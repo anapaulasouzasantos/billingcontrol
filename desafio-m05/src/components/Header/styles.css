@@ -26,11 +26,10 @@ header>h1 {
 }
 
 .profile-div {
+    position: relative;
     display: flex;
     align-items: center;
     gap: 16px;
-
-    cursor: pointer;
 }
 
 .profile-div>span {
@@ -45,10 +44,11 @@ header>h1 {
 
 .profile-div>button {
     all: unset;
+    cursor: pointer;
 
     margin-left: -8px;
 }
 
-.profile-div:hover>button {
+.profile-div>button:hover {
     transform: scale(130%);
 }

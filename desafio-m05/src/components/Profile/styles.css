@@ -1,0 +1,39 @@
+.box {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+
+    top: 40px;
+    left: 115px;
+}
+
+.box>img {
+    position: absolute;
+    top: -7px;
+    left: 10px;
+    z-index: 1;
+}
+
+.edit-and-logout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+
+    width: 92px;
+    height: 51px;
+
+    border-radius: 8px;
+
+    background-color: #fff;
+    box-shadow: 0px 4px 42px rgba(0, 0, 0, 0.2);
+}
+
+.edit-and-logout>button {
+    all: unset;
+    cursor: pointer;
+}
+
+.edit-and-logout>button:hover {
+    transform: scale(110%);
+}
