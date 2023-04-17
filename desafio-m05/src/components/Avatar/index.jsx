@@ -8,7 +8,7 @@ export default function LetterAvatars() {
             <Avatar sx={{
                 bgcolor: '#DEDEE9',
                 color: '#0E8750'
-            }}>LR</Avatar>
+            }}>L</Avatar>
         </Stack>
     );
-}''
+}

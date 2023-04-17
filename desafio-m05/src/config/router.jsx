@@ -3,7 +3,7 @@ import SignIn from '../pages/SignIn';
 import Teste from '../pages/Teste';
 import Main from '../pages/Main';
 
-import { getItem } from '../functions/storage'
+import { getItem } from '../functions/storage';
 
 function Router() {
     function ProtectedRoutes({ redirectTo }) {
@@ -14,7 +14,7 @@ function Router() {
     return (
         <Routes>
             <Route path='/' element={<SignIn />} />
-            <Route path='/teste' element={<Teste/>} />
+            <Route path='/teste' element={<Teste />} />
             <Route path='/main' element={<Main />} />
             <Route element={<ProtectedRoutes redirectTo='/' />} >
             </Route>
