@@ -1,13 +1,27 @@
-import './styles.css'
+import { useState } from 'react';
+import ContentClients from '../../components/Content/ContentClients';
+import ContentHome from '../../components/Content/ContentHome';
 import Header from '../../components/Header';
 import Sidebar from '../../components/Sidebar';
+import PageContext from '../../context/context.jsx';
+import './styles.css';
 
 function Main() {
+    const [pageContent, setPageContent] = useState('home');
     return (
-        <div className="main-container">
-            <Header />
-            <Sidebar />
-        </div>
+        <PageContext.Provider value={{ pageContent, setPageContent }}>
+            <div className="main-container">
+                <Sidebar />
+                <div className='q'>
+                    <Header />
+                    <div className='render-content'>
+                        {pageContent === 'home' && <ContentHome />}
+                        {pageContent === 'clients' && <ContentClients />}
+                    </div>
+                </div>
+
+            </div>
+        </PageContext.Provider>
     )
 }
 

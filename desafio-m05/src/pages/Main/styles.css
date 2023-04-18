@@ -3,8 +3,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
 
     background-color: #F8F8F9;
+}
+
+.q{
+    margin-left: 5%;
+    width: calc(100% - 140px);
+}
+.render-content{
+    margin-top: 124px;
+    width: 100%;
+    border: 1px solid red;
 }

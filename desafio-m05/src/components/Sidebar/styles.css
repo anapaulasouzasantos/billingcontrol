@@ -1,4 +1,4 @@
-aside {
+ aside {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,6 +11,8 @@ aside {
     height: 100%;
 
     padding-top: 45px;
+
+    background-color: #F0F0F5;
 }
 
 aside>button {
@@ -39,4 +41,17 @@ aside>button>strong {
     line-height: 22px;
 
     color: #343447;
+}
+
+.selected {
+    width: 100%;
+    border-right: 2px solid #DA0175;
+}
+
+.selected:hover {
+    transform: scale(100%);
+}
+
+.selected>strong {
+    color: #DA0175;
 }
