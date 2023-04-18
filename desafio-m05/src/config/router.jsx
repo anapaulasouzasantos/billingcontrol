@@ -2,6 +2,7 @@ import { Route, Routes, Outlet, Navigate } from 'react-router-dom'
 import SignIn from '../pages/SignIn';
 import Teste from '../pages/Teste';
 import Main from '../pages/Main';
+import SignUp from '../pages/SignUp';
 
 import { getItem } from '../functions/storage';
 
@@ -14,6 +15,7 @@ function Router() {
     return (
         <Routes>
             <Route path='/' element={<SignIn />} />
+            <Route path='/signup' element={<SignUp />} />
             <Route path='/teste' element={<Teste />} />
             <Route path='/main' element={<Main />} />
             <Route element={<ProtectedRoutes redirectTo='/' />} >
