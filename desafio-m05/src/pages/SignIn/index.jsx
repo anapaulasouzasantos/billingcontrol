@@ -1,25 +1,55 @@
 import './styles.css';
 import '../../utils/global.css';
+import api from '../../config/api';
+import { getItem, setItem } from '../../functions/storage';
 import Background from '../../assets/background-image.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
+  const navigate = useNavigate();
+
   const [errorMessage, setErrorMessage] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!email || !password) {
-      setErrorMessage('Todos os campos são obrigatorios.')
-      return;
+    try {
+      if (!email || !password) {
+        setErrorMessage('Todos os campos são obrigatorios.')
+        return;
+      }
+
+      const response = await api.post('/login', {
+        email,
+        password
+      });
+
+
+      const { token } = response.data;
+      setItem('token', token);
+      navigate('/main');
+    } catch (error) {
+      setEmail('');
+      setPassword('');
+      setErrorMessage(error.response.data.mensagem);
     }
   }
+
+  useEffect(() => {
+    const token = getItem('token');
+
+    if (token) {
+      navigate('/main');
+    }
+  }, [])
 
   return (
     <main>
       <div className='left'>
+        <p className='subtitle' >Gerencie todos os pagamentos da sua empresa em um só lugar.</p>
         <img src={Background} alt='aside background image' className='bg-image' />
       </div>
       <div className='right'>
@@ -37,7 +67,7 @@ function SignIn() {
               </input>
             </label>
             <label>
-              Senha
+              Senha < span className='pass-recover' >Esqueceu a senha?</span>
               <input
                 type='password'
                 placeholder='Digite sua senha'

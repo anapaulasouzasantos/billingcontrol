@@ -7,6 +7,28 @@ main {
     width: 40%;
 }
 
+.subtitle {
+    width: 388px;
+    height: 93px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 130%;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #034A2A;
+}
+
+.bg-image {
+    height: 100%;
+    margin: 0;
+}
+
 
 .right {
     width: 60%;
@@ -47,6 +69,7 @@ form h1 {
 }
 
 label {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -54,6 +77,17 @@ label {
     gap: 6px;
     width: 344px;
     height: 70px;
+}
+
+.pass-recover {
+    position: absolute;
+
+    left: 224px;
+
+    font-size: 14px;
+    text-decoration-line: underline;
+
+    color: #DA0175;
 }
 
 form input {
@@ -67,6 +101,7 @@ form input {
 }
 
 .error-message {
+    margin-top: 10px;
     color: red;
 }
 
