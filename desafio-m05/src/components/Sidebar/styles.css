@@ -1,0 +1,57 @@
+ aside {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 72px;
+
+    position: absolute;
+    left: 0;
+
+    width: 108px;
+    height: 100%;
+
+    padding-top: 45px;
+
+    background-color: #F0F0F5;
+}
+
+aside>button {
+    all: unset;
+
+    display: flex;
+    gap: 13px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 74px;
+
+    cursor: pointer;
+}
+
+aside>button:hover {
+    transform: scale(110%);
+}
+
+aside>button>strong {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+
+    color: #343447;
+}
+
+.selected {
+    width: 100%;
+    border-right: 2px solid #DA0175;
+}
+
+.selected:hover {
+    transform: scale(100%);
+}
+
+.selected>strong {
+    color: #DA0175;
+}

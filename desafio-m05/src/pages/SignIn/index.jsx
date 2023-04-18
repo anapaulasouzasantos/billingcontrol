@@ -1,9 +1,10 @@
 import './styles.css';
-import Background from '../../assets/backgroudImage.svg';
+import '../../utils/global.css';
+import Background from '../../assets/background-image.svg';
 import { useState } from 'react';
 
-
 function SignIn() {
+  const [errorMessage, setErrorMessage] = useState(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -11,6 +12,7 @@ function SignIn() {
     e.preventDefault();
 
     if (!email || !password) {
+      setErrorMessage('Todos os campos são obrigatorios.')
       return;
     }
   }
@@ -18,7 +20,7 @@ function SignIn() {
   return (
     <main>
       <div className='left'>
-        <img src={Background} />
+        <img src={Background} alt='aside background image' className='bg-image' />
       </div>
       <div className='right'>
         <form onSubmit={handleSubmit} >
@@ -45,11 +47,13 @@ function SignIn() {
               </input>
             </label>
           </div>
+          {errorMessage && <span className='error-message' >{errorMessage}</span>}
           <div className='container-enter' >
             <button className='btn-enter' >Entrar</button>
             <span>Ainda não possui uma conta? Cadastre-se</span>
           </div>
         </form>
+
       </div>
     </main>
   )
