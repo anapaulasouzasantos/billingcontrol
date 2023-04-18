@@ -1,3 +1,4 @@
+import EditUserModal from '../../components/EditUserModal';
 import { useState } from 'react';
 import ContentClients from '../../components/Content/ContentClients';
 import ContentHome from '../../components/Content/ContentHome';
@@ -7,10 +8,15 @@ import PageContext from '../../context/context.jsx';
 import './styles.css';
 
 function Main() {
+    const [open, setOpen] = useState(false);
     const [pageContent, setPageContent] = useState('home');
     return (
         <PageContext.Provider value={{ pageContent, setPageContent }}>
             <div className="main-container">
+                <EditUserModal
+                    open={open}
+                    setOpen={setOpen}
+                />
                 <Sidebar />
                 <div className='q'>
                     <Header />

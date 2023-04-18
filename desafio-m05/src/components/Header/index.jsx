@@ -4,7 +4,7 @@ import DownArrow from '../../assets/down-arrow.svg';
 import Profilebox from '../Profile';
 import { useState } from 'react';
 
-function Header() {
+function Header({ setOpen }) {
     const [modalProfile, setModalProfile] = useState(false);
 
     return (
@@ -21,7 +21,7 @@ function Header() {
                         alt='Down arrow profile'
                     />
                 </button>
-                {modalProfile && <Profilebox />}
+                {modalProfile && <Profilebox setOpen={setOpen} />}
             </div>
         </header>
     )
