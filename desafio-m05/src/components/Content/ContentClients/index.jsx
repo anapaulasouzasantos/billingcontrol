@@ -2,7 +2,7 @@ import './styles.css';
 
 const ContentClients = () => {
   return (
-    <div className='teste'>index</div>
+    <div>index</div>
   )
 }
 

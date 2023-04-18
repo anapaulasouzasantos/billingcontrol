@@ -18,7 +18,7 @@ function Main() {
                     setOpen={setOpen}
                 />
                 <Sidebar />
-                <div className='q'>
+                <div className='container-content'>
                     <Header />
                     <div className='render-content'>
                         {pageContent === 'home' && <ContentHome />}
