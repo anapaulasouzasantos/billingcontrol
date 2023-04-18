@@ -3,7 +3,7 @@ import Polygon from '../../assets/polygon.svg';
 import EditProfileIcone from '../../assets/edit-profile.svg';
 import LogoutIcone from '../../assets/logout.svg';
 
-function Profilebox() {
+function Profilebox({ setOpen }) {
     return (
         <div className='box'>
             <img
@@ -11,7 +11,9 @@ function Profilebox() {
                 alt='Polygon'
             />
             <div className='edit-and-logout'>
-                <button>
+                <button
+                    onClick={() => setOpen(true)}
+                >
                     <img
                         src={EditProfileIcone}
                         alt='Edit profile icone'
