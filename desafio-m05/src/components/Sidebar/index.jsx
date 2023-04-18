@@ -1,23 +1,27 @@
-import './styles.css';
-import HomeIcon from '../../assets/home-icon.svg';
-import SelectedHomeIcon from '../../assets/selected-home.svg';
-import ClientsIcon from '../../assets/clients-icon.svg';
-import SelectedClientsIcon from '../../assets/selected-clients.svg';
+import { useState, useContext } from 'react';
+import PageContext from '../../context/context.jsx';
 import ChargeIcon from '../../assets/charge-icon.svg';
-import { useState } from 'react';
+import ClientsIcon from '../../assets/clients-icon.svg';
+import HomeIcon from '../../assets/home-icon.svg';
+import SelectedClientsIcon from '../../assets/selected-clients.svg';
+import SelectedHomeIcon from '../../assets/selected-home.svg';
+import './styles.css';
 
 function Sidebar() {
+    const { pageContent, setPageContent } = useContext(PageContext);
     const [selectHomeIcon, setSelectHomeIcon] = useState(true);
     const [selectClientsIcon, setSelectClientsIcon] = useState(false);
     const [selectChargeIcon, setSelectChargeIcon] = useState(false);
 
     const handleClickHomeIcon = () => {
+        setPageContent('home');
         setSelectHomeIcon(true);
         setSelectClientsIcon(false);
         setSelectChargeIcon(false);
     }
 
     const handleClickClientsIcon = () => {
+        setPageContent('clients');
         setSelectHomeIcon(false);
         setSelectClientsIcon(true);
         setSelectChargeIcon(false);
