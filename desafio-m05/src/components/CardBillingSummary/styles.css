@@ -1,9 +1,9 @@
-.container-billing-summary{
+.container-billing-summary {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 360px;
+    width: 31.6%;
     height: 397px;
     border-radius: 30px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
@@ -11,7 +11,7 @@
     margin-top: 2%;
 }
 
-.billing-summary-header{
+.billing-summary-header {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -22,12 +22,12 @@
     border-bottom: 2px solid #EFF0F6;
 }
 
-.billing-summary-title{
+.billing-summary-title {
     color: #3F3F55;
     font-size: 18px;
 }
 
-.show-more{
+.show-more {
     display: flex;
     align-items: center;
     height: 12.09%;
