@@ -2,9 +2,8 @@ import './styles.css';
 import '../../utils/global.css';
 import api from '../../config/api';
 import { getItem, setItem } from '../../functions/storage';
-import Background from '../../assets/background-image.svg';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function SignIn() {
   const navigate = useNavigate();
@@ -27,9 +26,11 @@ function SignIn() {
         password
       });
 
+      const { token, user } = response.data;
 
-      const { token } = response.data;
       setItem('token', token);
+      setItem('email', user.email);
+      setItem('name', user.name)
       navigate('/main');
     } catch (error) {
       setEmail('');
@@ -47,12 +48,11 @@ function SignIn() {
   }, [])
 
   return (
-    <main>
-      <div className='left'>
+    <main className='container-page-login'>
+      <div className='left-content'>
         <p className='subtitle' >Gerencie todos os pagamentos da sua empresa em um só lugar.</p>
-        <img src={Background} alt='aside background image' className='bg-image' />
       </div>
-      <div className='right'>
+      <div className='right-content'>
         <form onSubmit={handleSubmit} >
           <h1>Faça seu login!</h1>
           <div className='container-input' >
@@ -80,10 +80,9 @@ function SignIn() {
           {errorMessage && <span className='error-message' >{errorMessage}</span>}
           <div className='container-enter' >
             <button className='btn-enter' >Entrar</button>
-            <span>Ainda não possui uma conta? Cadastre-se</span>
+            <span>Ainda não possui uma conta? <Link to='/signup'>Cadastre-se</Link></span>
           </div>
         </form>
-
       </div>
     </main>
   )
