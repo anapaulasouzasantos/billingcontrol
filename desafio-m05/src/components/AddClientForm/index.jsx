@@ -49,11 +49,13 @@ export default function AddClientForm() {
                 width: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                padding: '1%'
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                position: 'relative',
+                padding: '1px'
             }}>
-
-            <div style={{ display: 'flex' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div className='container-top'>
+                <div className='container-top-right'>
                     <img src={ClientsIcon} style={{ width: '32px' }}></img>
                     <h1>Cadastro do Cliente</h1>
                 </div>
@@ -62,8 +64,8 @@ export default function AddClientForm() {
                 </button>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <div className='div-input-and-span'>
+            <div className='container-form'>
+                <div className='input-form'>
                     <span>Nome*</span>
                     <TextField
                        required
@@ -75,10 +77,9 @@ export default function AddClientForm() {
                         value={userForm.name}
                     />
                 </div>
-                <div className='div-input-and-span'>
+                <div className='input-form'>
                     <span>E-mail*</span>
                     <TextField
-                        
                         name='email'
                         placeholder='Digite o e-mail'
                         sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }}
@@ -88,7 +89,7 @@ export default function AddClientForm() {
                     />
                 </div>
                 <div className='main-div-input-and-span'>
-                    <div className='div-input-and-span'>
+                    <div className='input-form'>
                         <span>CPF*</span>
                         <TextField
                             
@@ -100,7 +101,7 @@ export default function AddClientForm() {
                             value={userForm.cpf}
                         />
                     </div>
-                    <div className='div-input-and-span'>
+                    <div className='input-form'>
                         <span>Telefone*</span>
                         <TextField
                             name='tel'
@@ -112,7 +113,7 @@ export default function AddClientForm() {
                         />
                     </div>
                 </div>
-                <div className='div-input-and-span'>
+                <div className='input-form'>
                     <span>Endereço</span>
                     <TextField
                         name='street'
@@ -123,7 +124,7 @@ export default function AddClientForm() {
                         value={userForm.street}
                     />
                 </div>
-                <div className='div-input-and-span'>
+                <div className='input-form'>
                     <span>Complemento</span>
                     <TextField
                         name='complement'
@@ -135,7 +136,7 @@ export default function AddClientForm() {
                     />
                 </div>
                 <div className='main-div-input-and-span'>
-                    <div className='div-input-and-span'>
+                    <div className='input-form'>
                         <span>CEP</span>
                         <TextField
                             name='cep'
@@ -146,7 +147,7 @@ export default function AddClientForm() {
                             value={userForm.cep}
                         />
                     </div>
-                    <div className='div-input-and-span'>
+                    <div className='input-form'>
                         <span>Bairro</span>
                         <TextField
                             name='neighborhood'
@@ -159,7 +160,7 @@ export default function AddClientForm() {
                     </div>
                 </div>
                 <div className='main-div-input-and-span'>
-                    <div className='div-input-and-span'>
+                    <div className='input-form'>
                         <span>Cidade</span>
                         <TextField
                             name='city'
@@ -170,7 +171,7 @@ export default function AddClientForm() {
                             value={userForm.city}
                         />
                     </div>
-                    <div className='div-input-and-span'>
+                    <div className='input-form'>
                         <span>UF</span>
                         <TextField
                             name='state'
@@ -184,10 +185,10 @@ export default function AddClientForm() {
                 </div>
             </div>
             <div className='container-btn-opt'>
-                <button onClick={() => setOpenModalClient(false)}>
+                <button className='cancel-btn' onClick={() => setOpenModalClient(false)}>
                     Cancelar
                 </button>
-                <button onClick={() => handleSubmit()}>
+                <button className='aply-btn' onClick={() => handleSubmit()}>
                     Aplicar
                 </button>
             </div>

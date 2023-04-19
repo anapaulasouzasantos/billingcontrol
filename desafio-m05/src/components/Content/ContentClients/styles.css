@@ -38,14 +38,34 @@
 }
 
 .add-client-btn {
-    width: 267px;
+    all: unset;
+    width: 23.5%;
     height: 33px;
-    margin-right: 1%;
+    padding: 0 5%;
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    background-color: #DA0175;
+    box-shadow: 1px 1px 1px 0.3px rgba(0, 0, 0, 0.2);
+    color: #FFFFFF;
     cursor: pointer;
 }
 
 .search-input {
+    all: unset;
+    width: 28.7%;
+    height: 33px;
+    border-radius: 10px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
     background-image: url('../../../assets/search-icon.svg');
     background-repeat: no-repeat;
-    background-position: right;
+    background-position: right center;
+    background-color: #FFFFFF;
+    box-shadow: 1px 1px 1px 0.3px rgba(0, 0, 0, 0.2);
+}
+
+.search-input::placeholder{
+    color: #747488;
 }

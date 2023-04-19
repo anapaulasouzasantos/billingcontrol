@@ -12,7 +12,7 @@ import PageContext from '../../context/context.jsx';
 import { useContext } from 'react';
 
 export default function BasicTable() {
-  const { clientsData } = useContext(PageContext);
+  const { clientsData} = useContext(PageContext);
   return (
     <TableContainer component={Paper} sx={{ borderRadius: '30px' }}>
       <Table >

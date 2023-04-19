@@ -83,7 +83,7 @@ label {
 
 .pass-recover {
     position: absolute;
-    left: 65%;
+    right: 1%;
     font-size: 14px;
     font-weight: bold;
     text-decoration-line: underline;

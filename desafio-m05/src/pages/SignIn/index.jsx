@@ -79,7 +79,7 @@ function SignIn() {
           </div>
           {errorMessage && <span className='error-message' >{errorMessage}</span>}
           <div className='container-enter' >
-            <button className='btn-enter' >Entrar</button>
+            <button className='btn-enter' style={{cursor: 'pointer'}} >Entrar</button>
             <span>Ainda não possui uma conta? <Link to='/signup'>Cadastre-se</Link></span>
           </div>
         </form>

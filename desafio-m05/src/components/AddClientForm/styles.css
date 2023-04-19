@@ -1,9 +1,3 @@
-.main-div {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
 .main-div span {
     font-family: 'Nunito';
     font-style: normal;
@@ -13,18 +7,13 @@
     color: #344054;
 }
 
-
 .btn-close-modal {
     all: unset;
-
     position: absolute;
-
     right: 0px;
     top: 0;
-
     width: 32px;
     height: 30px;
-
     cursor: pointer;
 }
 
@@ -32,27 +21,56 @@
     transform: scale(110%);
 }
 
-.main-div>h1 {
-    margin-bottom: 12px;
 
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 130%;
-
-    text-align: center;
-
-    color: #343447;
-}
-
-.main-div-input-and-span {
+.input-form {
     display: flex;
-    gap: 30px;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
 }
 
-.container-btn-opt {
+.input-form span{
+    align-self: flex-start;
+    margin-top: 1%;
+}
+.container-top{
+    display: flex;
+    width: 100%;
+    margin-bottom: 1%;
+}
+
+.container-top-right{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+}
+.container-btn-opt {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.cancel-btn{
+    background-color: #DEDEE9;
+    color: #0E8750;
+}
+.aply-btn{
+    background-color: #DA0175;
+    color: #FFFFFF;
+}
+.aply-btn, .cancel-btn{
+    cursor: pointer;
+    width: 45%;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+}
+.container-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
 }

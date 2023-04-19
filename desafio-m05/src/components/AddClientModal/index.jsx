@@ -7,11 +7,10 @@ import { useContext } from 'react';
 
 const style = {
   display: 'flex',
-  flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
   width: '35%',
-  height: '623px',
+  height: 'auto',
   bgcolor: 'background.paper',
   boxShadow: 24,
   borderRadius: '30px',
