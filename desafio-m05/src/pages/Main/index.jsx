@@ -10,11 +10,12 @@ import './styles.css';
 
 function Main() {
     const [open, setOpen] = useState(false);
-    const [openModalClient, setOpenModalClient] = useState(false)
+    const [openModalClient, setOpenModalClient] = useState(false);
+    const [clientsData, setClientsData] = useState([]);
     const [pageContent, setPageContent] = useState('home');
     return (
         <PageContext.Provider
-            value={{ pageContent, setPageContent, open, setOpen, openModalClient, setOpenModalClient }}
+            value={{ pageContent, setPageContent, open, setOpen, openModalClient, setOpenModalClient,clientsData, setClientsData }}
         >
             <div className="main-container">
                 <EditUserModal />

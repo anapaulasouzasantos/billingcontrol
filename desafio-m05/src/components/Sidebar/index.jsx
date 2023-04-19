@@ -9,12 +9,10 @@ import api from '../../config/api.jsx'
 import './styles.css';
 
 function Sidebar() {
-    const { pageContent, setPageContent } = useContext(PageContext);
+    const { pageContent, setPageContent, setClientsData } = useContext(PageContext);
     const [selectHomeIcon, setSelectHomeIcon] = useState(true);
     const [selectClientsIcon, setSelectClientsIcon] = useState(false);
     const [selectChargeIcon, setSelectChargeIcon] = useState(false);
-    const [clientsData, setClientsData] = useState({})
-
     const handleClickHomeIcon = () => {
         setPageContent('home');
         setSelectHomeIcon(true);
@@ -38,12 +36,10 @@ function Sidebar() {
 
     async function reqTableData() {
         const response = await api.get('/clients');
-        setClientsData(response.data)
-        console.log(response.data)
+        setClientsData(response.data);
     }
 
     return (
-        <PageContext.Provider value={clientsData}>
             <aside>
                 <button
                     className={selectHomeIcon && 'selected'}
@@ -79,7 +75,6 @@ function Sidebar() {
                     </strong>
                 </button>
             </aside>
-        </PageContext.Provider>
     )
 }
 

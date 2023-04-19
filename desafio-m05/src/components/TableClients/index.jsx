@@ -8,18 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import UpDownArrow from '../../assets/updown-arrows.svg';
 import AddChargeIcon from '../../assets/add-charge-icon.svg';
-import { useContext } from 'react';
 import PageContext from '../../context/context.jsx';
-
-function createData(name, cpf, email, telefone, status, createAcount) {
-  return { name, cpf, email, telefone, status, createAcount };
-}
-
-const rows = [
-  createData('Sarah da Silva', '054 365 255 87', 'sarasilva@cubos.io', '71 9 9462 8654', 'Inadimplente'),
-  createData('Sarah da Silva', '054 365 255 87', 'sarasilva@cubos.io', '71 9 9462 8654', 'Inadimplente'),
-  createData('Sarah da Silva', '054 365 255 87', 'sarasilva@cubos.io', '71 9 9462 8654', 'Inadimplente'),
-];
+import { useContext } from 'react';
 
 export default function BasicTable() {
   const { clientsData } = useContext(PageContext);
@@ -43,17 +33,13 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <TableRow
-              key={row.name}
-            >
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
+          {clientsData.map((row) => (
+            <TableRow>
+              <TableCell>{row.name}</TableCell>
               <TableCell >{row.cpf}</TableCell>
               <TableCell >{row.email}</TableCell>
-              <TableCell >{row.telefone}</TableCell>
-              <TableCell >{row.status}</TableCell>
+              <TableCell >{row.tel}</TableCell>
+              <TableCell >Inadimplente</TableCell>
               <TableCell sx={{
                 display: 'flex',
                 flexDirection: 'column',

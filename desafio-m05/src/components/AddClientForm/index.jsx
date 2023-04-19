@@ -38,6 +38,7 @@ export default function AddClientForm() {
             return value !== ''
         }));
         const response = await api.post('/clients', data);
+        setOpenModalClient(false)
     }
 
     return (
