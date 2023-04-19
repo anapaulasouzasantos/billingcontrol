@@ -1,0 +1,50 @@
+
+.container-content-clients{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.content-top{
+    display: flex;
+    justify-content: space-between;
+    height: 46px;
+    margin-bottom: 2%;
+}
+
+.content-top-right{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 15%;
+}
+
+.content-top-right img{
+    width: 32px;
+}
+
+.content-top-right span{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+    color:#3F3F55;
+}
+
+.content-top-left{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 65%;
+}
+
+.add-client-btn{
+    width: 267px;
+    height: 33px;
+    margin-right: 1%;
+}
+.search-input{
+    background-image: url('../../../assets/search-icon.svg');
+    background-repeat: no-repeat;
+    background-position: right;
+}
