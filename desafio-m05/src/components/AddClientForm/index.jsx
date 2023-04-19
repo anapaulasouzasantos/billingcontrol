@@ -12,6 +12,7 @@ import ClientsIcon from '../../assets/clients-icon.svg'
 import './styles.css';
 import PageContext from '../../context/context'
 import { useContext } from 'react';
+import api from '../../config/api'
 
 export default function AddClientForm() {
     const { setOpenModalClient } = useContext(PageContext)
@@ -32,8 +33,15 @@ export default function AddClientForm() {
         setUserForm({ ...userForm, [e.target.name]: e.target.value });
     }
 
+    async function handleSubmit(){
+        const data = Object.fromEntries(Object.entries(userForm).filter(([key, value])=>{
+            return value !== ''
+        }));
+        const response = await api.post('/clients', data);
+    }
+
     return (
-        <Box
+        <Box 
             className='main-div'
             sx={{
                 height: '100%',
@@ -57,7 +65,7 @@ export default function AddClientForm() {
                 <div className='div-input-and-span'>
                     <span>Nome*</span>
                     <TextField
-                        required
+                       required
                         name='name'
                         placeholder='Digite seu nome'
                         sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }}
@@ -69,7 +77,7 @@ export default function AddClientForm() {
                 <div className='div-input-and-span'>
                     <span>E-mail*</span>
                     <TextField
-                        required
+                        
                         name='email'
                         placeholder='Digite o e-mail'
                         sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }}
@@ -82,7 +90,7 @@ export default function AddClientForm() {
                     <div className='div-input-and-span'>
                         <span>CPF*</span>
                         <TextField
-                            required
+                            
                             name='cpf'
                             placeholder='Digite o CPF'
                             sx={{ m: 1, width: '178px', margin: '6px 0 0 0' }}
@@ -94,13 +102,12 @@ export default function AddClientForm() {
                     <div className='div-input-and-span'>
                         <span>Telefone*</span>
                         <TextField
-                            required
-                            name='telephone'
+                            name='tel'
                             placeholder='Digite o Telefone'
                             sx={{ m: 1, width: '178px', margin: '6px 0 0 0' }}
                             size='small'
                             onChange={(e) => handleOnChangeUserForm(e)}
-                            value={userForm.telephone}
+                            value={userForm.tel}
                         />
                     </div>
                 </div>
@@ -176,12 +183,12 @@ export default function AddClientForm() {
                 </div>
             </div>
             <div className='container-btn-opt'>
-                <div onClick={() => setOpenModalClient(false)}>
+                <button onClick={() => setOpenModalClient(false)}>
                     Cancelar
-                </div>
-                <div onClick={() => console.log(userForm)}>
+                </button>
+                <button onClick={() => handleSubmit()}>
                     Aplicar
-                </div>
+                </button>
             </div>
         </Box>
     );

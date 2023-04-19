@@ -10,9 +10,9 @@ function Profilebox() {
     const { setOpen } = useContext(PageContext);
 
     const logoutUser = () => {
-        removeItem('token')
-        removeItem('name')
-        removeItem('email')
+        removeItem('token');
+        removeItem('name');
+        removeItem('email');
         window.location.reload(true);
     }
 
