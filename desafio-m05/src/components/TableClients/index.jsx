@@ -10,9 +10,10 @@ import UpDownArrow from '../../assets/updown-arrows.svg';
 import AddChargeIcon from '../../assets/add-charge-icon.svg';
 import PageContext from '../../context/context.jsx';
 import { useContext } from 'react';
+import './styles.css';
 
 export default function BasicTable() {
-  const { clientsData} = useContext(PageContext);
+  const { clientsData } = useContext(PageContext);
   return (
     <TableContainer component={Paper} sx={{ borderRadius: '30px' }}>
       <Table >
@@ -34,12 +35,12 @@ export default function BasicTable() {
         </TableHead>
         <TableBody>
           {clientsData.map((row) => (
-            <TableRow>
-              <TableCell>{row.name}</TableCell>
-              <TableCell >{row.cpf}</TableCell>
-              <TableCell >{row.email}</TableCell>
-              <TableCell >{row.tel}</TableCell>
-              <TableCell >Inadimplente</TableCell>
+            <TableRow className='table-cell'>
+              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>{row.name}</TableCell>
+              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>{row.cpf}</TableCell>
+              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>{row.email}</TableCell>
+              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }} >{row.tel}</TableCell>
+              <TableCell><span className='overdue-client'>Inadimplente</span></TableCell>
               <TableCell sx={{
                 display: 'flex',
                 flexDirection: 'column',
