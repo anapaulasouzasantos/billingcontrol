@@ -3,7 +3,7 @@ import Polygon from '../../assets/polygon.svg';
 import EditProfileIcone from '../../assets/edit-profile.svg';
 import LogoutIcone from '../../assets/logout.svg';
 import PageContext from '../../context/context.jsx';
-import { useContext, useEffect } from 'react';
+import { useContext} from 'react';
 import { removeItem } from '../../functions/storage';
 
 function Profilebox() {
