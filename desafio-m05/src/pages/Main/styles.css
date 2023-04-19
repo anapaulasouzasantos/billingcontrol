@@ -1,14 +1,14 @@
 .main-container {
     position: relative;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     width: 100%;
     min-height: 100vh;
     background-color: #F8F8F9;
 }
 
-.container-content{
+.container-content {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,7 +16,8 @@
     margin-left: 10%;
     width: calc(100% - 140px);
 }
-.render-content{
-    margin-top: 124px;
+
+.render-content {
+    margin-top: 2%;
     width: 85%;
 }
