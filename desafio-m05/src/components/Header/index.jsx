@@ -2,9 +2,13 @@ import './styles.css';
 import LetterAvatars from '../Avatar';
 import DownArrow from '../../assets/down-arrow.svg';
 import Profilebox from '../Profile';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { getItem } from '../../functions/storage';
+import PageContext from '../../context/context.jsx';
 
-function Header({ setOpen }) {
+function Header() {
+    const { open } = useContext(PageContext);
+    const name = getItem('name');
     const [modalProfile, setModalProfile] = useState(false);
 
     return (
@@ -12,7 +16,7 @@ function Header({ setOpen }) {
             <h1>Resumo das cobranças</h1>
             <div className='profile-div'>
                 <LetterAvatars />
-                <span>Lorena</span>
+                <span>{name}</span>
                 <button
                     onClick={() => setModalProfile(!modalProfile)}
                 >
@@ -21,7 +25,7 @@ function Header({ setOpen }) {
                         alt='Down arrow profile'
                     />
                 </button>
-                {modalProfile && <Profilebox setOpen={setOpen} />}
+                {modalProfile && <Profilebox setOpen={open} />}
             </div>
         </header>
     )

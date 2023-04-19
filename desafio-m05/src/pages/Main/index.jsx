@@ -11,7 +11,7 @@ function Main() {
     const [open, setOpen] = useState(false);
     const [pageContent, setPageContent] = useState('home');
     return (
-        <PageContext.Provider value={{ pageContent, setPageContent }}>
+        <PageContext.Provider value={{ pageContent, setPageContent, open, setOpen }}>
             <div className="main-container">
                 <EditUserModal
                     open={open}
