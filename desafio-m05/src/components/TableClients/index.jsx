@@ -8,6 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import UpDownArrow from '../../assets/updown-arrows.svg';
 import AddChargeIcon from '../../assets/add-charge-icon.svg';
+import { useContext } from 'react';
+import PageContext from '../../context/context.jsx';
 
 function createData(name, cpf, email, telefone, status, createAcount) {
   return { name, cpf, email, telefone, status, createAcount };
@@ -20,14 +22,15 @@ const rows = [
 ];
 
 export default function BasicTable() {
+  const { clientsData } = useContext(PageContext);
   return (
-    <TableContainer component={Paper} sx={{borderRadius: '30px'}}>
+    <TableContainer component={Paper} sx={{ borderRadius: '30px' }}>
       <Table >
         <TableHead>
           <TableRow>
             <TableCell sx={{
-               display:'flex',
-               alignItems: 'center'
+              display: 'flex',
+              alignItems: 'center'
             }}>
               <img src={UpDownArrow}></img>
               Cliente
@@ -52,11 +55,15 @@ export default function BasicTable() {
               <TableCell >{row.telefone}</TableCell>
               <TableCell >{row.status}</TableCell>
               <TableCell sx={{
-                display:'flex',
+                display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center'
-              }}><img src={AddChargeIcon}/><span>Cobrança</span></TableCell>
+                justifyContent: 'center',
+                cursor: 'pointer'
+              }}>
+                <img src={AddChargeIcon} />
+                <span style={{ color: '#DA0175', fontSize: '8px', fontWeight: 'bold' }}>Cobrança</span>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

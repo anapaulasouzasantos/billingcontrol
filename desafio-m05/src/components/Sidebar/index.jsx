@@ -5,6 +5,7 @@ import ClientsIcon from '../../assets/clients-icon.svg';
 import HomeIcon from '../../assets/home-icon.svg';
 import SelectedClientsIcon from '../../assets/selected-clients.svg';
 import SelectedHomeIcon from '../../assets/selected-home.svg';
+import api from '../../config/api.jsx'
 import './styles.css';
 
 function Sidebar() {
@@ -12,6 +13,7 @@ function Sidebar() {
     const [selectHomeIcon, setSelectHomeIcon] = useState(true);
     const [selectClientsIcon, setSelectClientsIcon] = useState(false);
     const [selectChargeIcon, setSelectChargeIcon] = useState(false);
+    const [clientsData, setClientsData] = useState({})
 
     const handleClickHomeIcon = () => {
         setPageContent('home');
@@ -21,6 +23,7 @@ function Sidebar() {
     }
 
     const handleClickClientsIcon = () => {
+        reqTableData()
         setPageContent('clients');
         setSelectHomeIcon(false);
         setSelectClientsIcon(true);
@@ -32,42 +35,51 @@ function Sidebar() {
         setSelectClientsIcon(false);
         setSelectChargeIcon(true);
     }
+
+    async function reqTableData() {
+        const response = await api.get('/clients');
+        setClientsData(response.data)
+        console.log(response.data)
+    }
+
     return (
-        <aside>
-            <button
-                className={selectHomeIcon && 'selected'}
-                onClick={handleClickHomeIcon}
-            >
-                <img
-                    src={selectHomeIcon ? SelectedHomeIcon : HomeIcon}
-                    alt='Home Icon'
-                />
-                <strong>
-                    Home
-                </strong>
-            </button>
-            <button
-                className={selectClientsIcon && 'selected'}
-                onClick={handleClickClientsIcon}
-            >
-                <img
-                    src={selectClientsIcon ? SelectedClientsIcon : ClientsIcon}
-                    alt='Clients Icon'
-                />
-                <strong>
-                    Clientes
-                </strong>
-            </button>
-            <button>
-                <img
-                    src={ChargeIcon}
-                    alt='Charge Icon'
-                />
-                <strong>
-                    Cobranças
-                </strong>
-            </button>
-        </aside>
+        <PageContext.Provider value={clientsData}>
+            <aside>
+                <button
+                    className={selectHomeIcon && 'selected'}
+                    onClick={handleClickHomeIcon}
+                >
+                    <img
+                        src={selectHomeIcon ? SelectedHomeIcon : HomeIcon}
+                        alt='Home Icon'
+                    />
+                    <strong>
+                        Home
+                    </strong>
+                </button>
+                <button
+                    className={selectClientsIcon && 'selected'}
+                    onClick={handleClickClientsIcon}
+                >
+                    <img
+                        src={selectClientsIcon ? SelectedClientsIcon : ClientsIcon}
+                        alt='Clients Icon'
+                    />
+                    <strong>
+                        Clientes
+                    </strong>
+                </button>
+                <button>
+                    <img
+                        src={ChargeIcon}
+                        alt='Charge Icon'
+                    />
+                    <strong>
+                        Cobranças
+                    </strong>
+                </button>
+            </aside>
+        </PageContext.Provider>
     )
 }
 

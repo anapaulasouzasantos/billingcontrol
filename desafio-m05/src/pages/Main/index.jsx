@@ -1,4 +1,5 @@
 import EditUserModal from '../../components/EditUserModal';
+import AddClientModal from '../../components/AddClientModal';
 import { useState } from 'react';
 import ContentClients from '../../components/Content/ContentClients';
 import ContentHome from '../../components/Content/ContentHome';
@@ -9,14 +10,15 @@ import './styles.css';
 
 function Main() {
     const [open, setOpen] = useState(false);
+    const [openModalClient, setOpenModalClient] = useState(false)
     const [pageContent, setPageContent] = useState('home');
     return (
-        <PageContext.Provider value={{ pageContent, setPageContent, open, setOpen }}>
+        <PageContext.Provider
+            value={{ pageContent, setPageContent, open, setOpen, openModalClient, setOpenModalClient }}
+        >
             <div className="main-container">
-                <EditUserModal
-                    open={open}
-                    setOpen={setOpen}
-                />
+                <EditUserModal />
+                <AddClientModal />
                 <Sidebar />
                 <div className='container-content'>
                     <Header />
