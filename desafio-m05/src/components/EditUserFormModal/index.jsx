@@ -44,8 +44,11 @@ export default function EditUserForm({ setOpen }) {
                     authorization: `Bearer ${token}`
                 }
             });
-            data[0].password = ''
-            setUserForm(...data)
+            const newUserForm = Object.fromEntries(Object.entries(data[0]).filter(([key, value]) => {
+                return value !== null && key !== 'id' && key !== 'password'
+            }));
+
+            setUserForm(newUserForm)
             setRenderForm(true);
         }
 
@@ -67,6 +70,7 @@ export default function EditUserForm({ setOpen }) {
         setItem('email', response.data.email)
         setItem('name', response.data.name)
         setRenderForm(false);
+        setOpen(false)
     }
 
     return (
