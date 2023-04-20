@@ -39,14 +39,14 @@ export default function EditUserForm({ setOpen }) {
 
     useEffect(() => {
         async function getUserInfo() {
-            const { data } = await api.get('/users', {
+            const data = { email: getItem("email") }
+            console.log(data)
+            const response = await api.get('/users', { data }, {
                 headers: {
                     authorization: `Bearer ${token}`
                 }
             });
-            data[0].password = ''
-            setUserForm(...data)
-            setRenderForm(true);
+            console.log(response)
         }
 
         if (!renderForm) {
@@ -58,6 +58,7 @@ export default function EditUserForm({ setOpen }) {
         const data = Object.fromEntries(Object.entries(userForm).filter(([key, value]) => {
             return value !== '' && key !== 'confirmPassword'
         }));
+        console.log(data)
         const response = await api.put('/users', data, {
             headers: {
                 authorization: `Bearer ${token}`
@@ -66,133 +67,114 @@ export default function EditUserForm({ setOpen }) {
 
         setItem('email', response.data.email)
         setItem('name', response.data.name)
-        setRenderForm(false);
     }
 
     return (
-        <>
-            {renderForm && <Box
-                className='main-div'
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '20px',
-                    padding: '20px'
-                }}>
-                <button
-                    className='btn-close-modal'
-                    onClick={() => setOpen(false)}
-                >
-                    <img
-                        src={CloseIcon}
-                        alt='Icon to close modal'
-                    />
-                </button>
-                <h1>Edite seu cadastro</h1>
-                <div className='div-input-and-span'>
+        <Box
+            className='main-div'
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '20px',
+                padding: '20px'
+            }}>
+            <button
+                className='btn-close-modal-edit-user'
+                onClick={() => setOpen(false)}
+            >
+                <img
+                    src={CloseIcon}
+                    alt='Icon to close modal'
+                />
+            </button>
+            <h1>Edite seu cadastro</h1>
+            <div className='container-form container-edit-form'>
+                <div className='input-form'>
                     <span>Nome*</span>
-                    <TextField
+                    <input
                         required
                         name='name'
                         placeholder='Digite seu nome'
-                        sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }}
-                        size='small'
                         onChange={(e) => handleOnChangeUserForm(e)}
                         value={userForm.name}
                     />
                 </div>
-                <div className='div-input-and-span'>
+                <div className='input-form'>
                     <span>E-mail*</span>
-                    <TextField
-                        required
+                    <input
                         name='email'
-                        placeholder='Digite seu e-mail'
-                        sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }}
+                        placeholder='Digite o e-mail'
                         size='small'
                         onChange={(e) => handleOnChangeUserForm(e)}
                         value={userForm.email}
                     />
                 </div>
-                <div className='main-div-input-and-span'>
-                    <div className='div-input-and-span'>
-                        <span>CPF</span>
-                        <TextField
+                <div className='d-container-input'>
+                    <div className='input-form' style={{ marginRight: '4%' }}>
+                        <span>CPF*</span>
+                        <input
                             name='cpf'
-                            placeholder='Digite seu CPF'
-                            sx={{ m: 1, width: '178px', margin: '6px 0 0 0' }}
+                            placeholder='Digite o CPF'
                             size='small'
                             onChange={(e) => handleOnChangeUserForm(e)}
                             value={userForm.cpf}
                         />
                     </div>
-                    <div className='div-input-and-span'>
-                        <span>Telefone</span>
-                        <TextField
+                    <div className='input-form'>
+                        <span>Telefone*</span>
+                        <input
                             name='tel'
-                            placeholder='Digite seu Telefone'
-                            sx={{ m: 1, width: '178px', margin: '6px 0 0 0' }}
+                            placeholder='Digite o Telefone'
                             size='small'
                             onChange={(e) => handleOnChangeUserForm(e)}
                             value={userForm.tel}
                         />
                     </div>
                 </div>
-                <div className='div-input-and-span'>
-                    <span>Nova Senha*</span>
-                    <FormControl sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }} variant="outlined">
-                        <OutlinedInput
+                <FormControl sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }} variant="outlined">
+                    <div className='input-form'>
+                        <span>Nova Senha*</span>
+                        <input
                             required
                             name='password'
-                            size='small'
-                            type={showPassword ? 'password' : 'text'}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                        edge="end"
-                                    >
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
                             onChange={(e) => handleOnChangeUserForm(e)}
                             value={userForm.password}
+                            type={showPassword ? 'password' : 'text'}
                         />
-                    </FormControl>
-                </div>
-                <div className='div-input-and-span'>
-                    <span>Nova Senha*</span>
-                    <FormControl sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }} variant="outlined">
-                        <OutlinedInput
+                        <button
+                            className='visibility-btn'
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                        >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </button>
+                    </div>
+                </FormControl>
+                <FormControl sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }} variant="outlined">
+                    <div className='input-form'>
+                        <span>Confirmar Senha*</span>
+                        <input
                             required
                             name='confirmPassword'
-                            size='small'
-                            type={showConfirmPassword ? 'password' : 'text'}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickConfirmShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                        edge="end"
-                                    >
-                                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
                             onChange={(e) => handleOnChangeUserForm(e)}
                             value={userForm.confirmPassword}
+                            type={showPassword ? 'password' : 'text'}
                         />
-                    </FormControl>
-                </div>
+                        <button
+                            className='visibility-btn'
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                        >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </button>
+                    </div>
+                </FormControl>
                 <button className='edit-user-form-btn'
                     onClick={() => handleSubmit()}
                 >
                     Aplicar
                 </button>
-            </Box>}
-        </>
+            </div>
+        </Box>
     );
 }
