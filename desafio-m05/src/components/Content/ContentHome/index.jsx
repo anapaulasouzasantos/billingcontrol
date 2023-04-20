@@ -29,20 +29,41 @@ const ContentHome = () => {
           bgcolor={'#FCF6DC'} />
       </div>
       <div className='card-billing-summary'>
-        <CardBillingSumary title={'Cobranças Vencidas'} count={'08'}></CardBillingSumary>
-        <CardBillingSumary title={'Cobranças Previstas'} count={'05'}></CardBillingSumary>
-        <CardBillingSumary title={'Cobranças Pagas'} count={'10'}></CardBillingSumary>
+        <CardBillingSumary
+          title={'Cobranças Vencidas'}
+          count={'08'}
+          bgcolor={'#FFEFEF'}
+          color={'#971D1D'} >
+        </CardBillingSumary>
+        <CardBillingSumary
+          title={'Cobranças Previstas'}
+          count={'05'}
+          bgcolor={'#FCF6DC'}
+          color={'#C5A605'} >
+        </CardBillingSumary>
+        <CardBillingSumary
+          title={'Cobranças Pagas'}
+          count={'10'}
+          bgcolor={'#EEF6F6'}
+          color={'#1FA7AF'} >
+        </CardBillingSumary>
       </div>
       <div className='card-client-summary'>
-        <CardClientSummary 
-        title={'Clientes Inadimplentes'} 
-        icon={DefaulterClientIcon} 
-        count={'08'}>
+        <CardClientSummary
+          title={'Clientes Inadimplentes'}
+          icon={DefaulterClientIcon}
+          count={'08'}
+          bgcolor={'#FFEFEF'}
+          color={'#971D1D'}
+        >
         </CardClientSummary>
-        <CardClientSummary 
-        title={'Clientes em dia'}
-        icon={PayerClientIcon} 
-        count={'08'}>
+        <CardClientSummary
+          title={'Clientes em dia'}
+          icon={PayerClientIcon}
+          count={'08'}
+          bgcolor={'#EEF6F6'}
+          color={'#1FA7AF'}
+        >
         </CardClientSummary>
       </div>
     </div>

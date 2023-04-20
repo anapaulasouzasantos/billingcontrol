@@ -1,3 +1,4 @@
+import './styles.css';
 import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -13,7 +14,7 @@ function createData(name, id, value) {
 
 const rows = [
   createData('Sara Silva', 223456787, 'R$ 1000,00'),
-  createData('Carlos Prado', 223456781,'R$ 400,00'),
+  createData('Carlos Prado', 223456781, 'R$ 400,00'),
   createData('Lara Brito', 223456781, 'R$ 900,00'),
   createData('Soraia Neves', 223456787, 'R$ 700,00'),
 ];
@@ -24,9 +25,9 @@ export default function BasicTable() {
       <Table >
         <TableHead>
           <TableRow>
-            <TableCell>Cliente</TableCell>
-            <TableCell >ID da cob.</TableCell>
-            <TableCell>Valor</TableCell>
+            <TableCell className='subt-table' >Cliente</TableCell>
+            <TableCell className='subt-table' >ID da cob.</TableCell>
+            <TableCell className='subt-table' >Valor</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -34,11 +35,11 @@ export default function BasicTable() {
             <TableRow
               key={row.name}
             >
-              <TableCell component="th" scope="row">
+              <TableCell className='data-table' component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell >{row.id}</TableCell>
-              <TableCell >{row.value}</TableCell>
+              <TableCell className='data-table' >{row.id}</TableCell>
+              <TableCell className='data-table' >{row.value}</TableCell>
             </TableRow>
           ))}
         </TableBody>
