@@ -37,14 +37,16 @@ export default function EditUserForm({ setOpen }) {
         setUserForm({ ...userForm, [e.target.name]: e.target.value });
     }
 
-    useEffect(()=>{
-        async function getUserInfo(){
-            const data = {email: getItem("email")}
+    useEffect(() => {
+        async function getUserInfo() {
+            const data = { email: getItem("email") }
             console.log(data)
-            const response = await api.get('/users', {data}, {headers:{ 
-                authorization: `Bearer ${token}` 
-            }});
-            console.log(response) 
+            const response = await api.get('/users', { data }, {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            });
+            console.log(response)
         }
         getUserInfo();
     });
@@ -54,12 +56,14 @@ export default function EditUserForm({ setOpen }) {
             return value !== '' && key !== 'confirmPassword'
         }));
         console.log(data)
-        const response = await api.put('/users', data, {headers:{ 
-            authorization: `Bearer ${token}` 
-        }});
+        const response = await api.put('/users', data, {
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        });
 
-        setItem('email', response.data.email )
-        setItem('name', response.data.name )
+        setItem('email', response.data.email)
+        setItem('name', response.data.name)
     }
 
     return (
@@ -72,7 +76,7 @@ export default function EditUserForm({ setOpen }) {
                 padding: '20px'
             }}>
             <button
-                className='btn-close-modal'
+                className='btn-close-modal-edit-user'
                 onClick={() => setOpen(false)}
             >
                 <img
@@ -81,109 +85,93 @@ export default function EditUserForm({ setOpen }) {
                 />
             </button>
             <h1>Edite seu cadastro</h1>
-            <div className='div-input-and-span'>
-                <span>Nome*</span>
-                <TextField
-                    required
-                    name='name'
-                    placeholder='Digite seu nome'
-                    sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }}
-                    size='small'
-                    onChange={(e) => handleOnChangeUserForm(e)}
-                    value={userForm.name}
-                />
-            </div>
-            <div className='div-input-and-span'>
-                <span>E-mail*</span>
-                <TextField
-                    required
-                    name='email'
-                    placeholder='Digite seu e-mail'
-                    sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }}
-                    size='small'
-                    onChange={(e) => handleOnChangeUserForm(e)}
-                    value={userForm.email}
-                />
-            </div>
-            <div className='main-div-input-and-span'>
-                <div className='div-input-and-span'>
-                    <span>CPF</span>
-                    <TextField
-                        name='cpf'
-                        placeholder='Digite seu CPF'
-                        sx={{ m: 1, width: '178px', margin: '6px 0 0 0' }}
-                        size='small'
+            <div className='container-form container-edit-form'>
+                <div className='input-form'>
+                    <span>Nome*</span>
+                    <input
+                        required
+                        name='name'
+                        placeholder='Digite seu nome'
                         onChange={(e) => handleOnChangeUserForm(e)}
-                        value={userForm.cpf}
+                        value={userForm.name}
                     />
                 </div>
-                <div className='div-input-and-span'>
-                    <span>Telefone</span>
-                    <TextField
-                        name='tel'
-                        placeholder='Digite seu Telefone'
-                        sx={{ m: 1, width: '178px', margin: '6px 0 0 0' }}
+                <div className='input-form'>
+                    <span>E-mail*</span>
+                    <input
+                        name='email'
+                        placeholder='Digite o e-mail'
                         size='small'
                         onChange={(e) => handleOnChangeUserForm(e)}
-                        value={userForm.tel}
+                        value={userForm.email}
                     />
                 </div>
-            </div>
-            <div className='div-input-and-span'>
-                <span>Nova Senha*</span>
+                <div className='d-container-input'>
+                    <div className='input-form' style={{ marginRight: '4%' }}>
+                        <span>CPF*</span>
+                        <input
+                            name='cpf'
+                            placeholder='Digite o CPF'
+                            size='small'
+                            onChange={(e) => handleOnChangeUserForm(e)}
+                            value={userForm.cpf}
+                        />
+                    </div>
+                    <div className='input-form'>
+                        <span>Telefone*</span>
+                        <input
+                            name='tel'
+                            placeholder='Digite o Telefone'
+                            size='small'
+                            onChange={(e) => handleOnChangeUserForm(e)}
+                            value={userForm.tel}
+                        />
+                    </div>
+                </div>
                 <FormControl sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }} variant="outlined">
-                    <OutlinedInput
-                        required
-                        name='password'
-                        size='small'
-                        type={showPassword ? 'password' : 'text'}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    aria-label="toggle password visibility"
-                                    onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
-                                    edge="end"
-                                >
-                                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                        onChange={(e) => handleOnChangeUserForm(e)}
-                        value={userForm.password}
-                    />
+                    <div className='input-form'>
+                        <span>Nova Senha*</span>
+                        <input
+                            required
+                            name='password'
+                            onChange={(e) => handleOnChangeUserForm(e)}
+                            value={userForm.password}
+                            type={showPassword ? 'password' : 'text'}
+                        />
+                        <button
+                            className='visibility-btn'
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                        >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </button>
+                    </div>
                 </FormControl>
-            </div>
-            <div className='div-input-and-span'>
-                <span>Nova Senha*</span>
                 <FormControl sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }} variant="outlined">
-                    <OutlinedInput
-                        required
-                        name='confirmPassword'
-                        size='small'
-                        type={showConfirmPassword ? 'password' : 'text'}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    aria-label="toggle password visibility"
-                                    onClick={handleClickConfirmShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
-                                    edge="end"
-                                >
-                                    {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                        onChange={(e) => handleOnChangeUserForm(e)}
-                        value={userForm.confirmPassword}
-                    />
+                    <div className='input-form'>
+                        <span>Confirmar Senha*</span>
+                        <input
+                            required
+                            name='confirmPassword'
+                            onChange={(e) => handleOnChangeUserForm(e)}
+                            value={userForm.confirmPassword}
+                            type={showPassword ? 'password' : 'text'}
+                        />
+                        <button
+                            className='visibility-btn'
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                        >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </button>
+                    </div>
                 </FormControl>
+                <button className='edit-user-form-btn'
+                    onClick={() => handleSubmit()}
+                >
+                    Aplicar
+                </button>
             </div>
-            <button className='edit-user-form-btn'
-                onClick={()=>handleSubmit()}
-            >
-                Aplicar
-            </button>
         </Box>
     );
 }

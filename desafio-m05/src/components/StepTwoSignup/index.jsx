@@ -45,7 +45,7 @@ function StepTwoSignup({ registerForm, setRegisterForm }, error) {
                             onMouseDown={handleMouseDownPassword}
                             edge="end"
                         >
-                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
                         </IconButton>
                     </InputAdornment>
                 }
@@ -56,7 +56,7 @@ function StepTwoSignup({ registerForm, setRegisterForm }, error) {
             <Input
                 className='input-base'
                 name="confirmPassword"
-                type={showConfirmPassword ? 'text' : 'password'}
+                type={showPassword ? 'text' : 'password'}
                 disableUnderline={true}
                 placeholder='Repita sua senha'
                 endAdornment={
@@ -67,7 +67,7 @@ function StepTwoSignup({ registerForm, setRegisterForm }, error) {
                             onMouseDown={handleMouseDownConfirmPassword}
                             edge="end"
                         >
-                            {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
                         </IconButton>
                     </InputAdornment>
                 }
