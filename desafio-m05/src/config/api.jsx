@@ -5,9 +5,9 @@ const token = getItem('token');
 const api = axios.create({
     baseURL: import.meta.env.VITE_PROD,
     timeout: 10000,
-    headers: { 
+    headers: {
         'Content-Type': 'application/json',
-        authorization: `Bearer ${token}` 
+        authorization: `Bearer ${token}`
     }
 });
 export default api;
