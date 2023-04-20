@@ -6,9 +6,6 @@
 
 main {
     display: flex;
-    justify-content: center;
-    align-items: center;
-
     font-family: sans-serif;
 }
 
@@ -23,75 +20,31 @@ main {
     background-color: #F0F0F5;
 }
 
-.right {
-    display: flex;
-
-    width: 940px;
-    padding-top: 208px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #F8F8F9;
-}
-
 .stepper-form {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    width: 940px;
+    background-color: #F8F8F9;
 }
 
-h1 {
-    margin-bottom: 12px;
-
-    text-align: center;
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 130%;
-
-    color: #343447;
-}
-
-label {
-    margin-top: 20px;
-    font-family: 'Nunito';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
-
-    color: #344054;
-}
-
-input {
-    padding: 10px 14px;
-    width: 368px;
-    height: 44px;
-
-    background: #FFFFFF;
-
-    border: 1px solid #D0D5DD;
-
-    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-    border-radius: 8px;
-}
-
-button {
+.continue-button {
     align-self: center;
 
-    padding: 4px 40px;
-    margin-top: 46px;
+    margin-top: 18px;
     margin-bottom: 15px;
 
     width: 160px;
     height: 33px;
-    left: calc(50% - 160px/2 - 0.5px);
-    top: calc(50% - 33px/2 - 0.5px);
 
     color: #FFFFFF;
     background: #DA0175;
     border: none;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 span {
@@ -104,6 +57,11 @@ span {
     line-height: 130%;
 
     color: #3F3F55;
+}
+
+.error-message-span {
+    margin-top: 10px;
+    color: red;
 }
 
 a {
