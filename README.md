@@ -12,9 +12,9 @@ A versão final do código de cada sprint deverá estar na branch principal do r
 
 No fork de vocês, favor alterar este README para adicionar os links correspondentes para os seguintes itens:
 
-**Repositório de Backend**:
+**Repositório de Backend**: https://github.com/githubdaAna/back-integral-m05-t09
 
-**Repositório de Frontend**:
+**Repositório de Frontend**: https://github.com/githubdaAna/front-integral-m05-t09
 
 **URL da aplicação funcionando**:
 
