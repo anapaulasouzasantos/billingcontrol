@@ -1,0 +1,17 @@
+.subtitle-table {
+    font-family: 'Nunito', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+
+    color: #3F3F55;
+}
+
+.data {
+    font-family: 'Nunito', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+
+    color: #747488;
+}

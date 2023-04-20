@@ -23,8 +23,23 @@
 }
 
 .billing-summary-title {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
     color: #3F3F55;
     font-size: 18px;
+}
+
+.billing-summary-count {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+
+    width: 52px;
+    height: 21px;
+    border-radius: 8px;
 }
 
 .show-more {

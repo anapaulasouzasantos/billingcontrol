@@ -30,8 +30,26 @@
 }
 
 .client-summary-title {
+    margin-left: 8px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
     color: #3F3F55;
     font-size: 18px;
+}
+
+.client-summary-count {
+    width: 52px;
+    height: 20px;
+    border-radius: 8px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: center;
 }
 
 .show-more {

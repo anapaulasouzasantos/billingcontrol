@@ -1,3 +1,4 @@
+import './styles.css';
 import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -13,7 +14,7 @@ function createData(name, duedate, value) {
 
 const rows = [
   createData('Cameron Williamson', '03/02/2021', 'R$ 500,00'),
-  createData('Savannah Nguyen', '04/03/2021','R$ 500,00'),
+  createData('Savannah Nguyen', '04/03/2021', 'R$ 500,00'),
   createData('Darlene Robertson', '21/04/2021', 'R$ 500,00'),
   createData('Marvin McKinney', '08/05/2021', 'R$ 500,00'),
 ];
@@ -24,9 +25,9 @@ export default function BasicTable() {
       <Table >
         <TableHead>
           <TableRow>
-            <TableCell>Clientes</TableCell>
-            <TableCell >Data de venc.</TableCell>
-            <TableCell>Valor</TableCell>
+            <TableCell className='subtitle-table'>Clientes</TableCell>
+            <TableCell className='subtitle-table' >Data de venc.</TableCell>
+            <TableCell className='subtitle-table' >Valor</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -34,11 +35,11 @@ export default function BasicTable() {
             <TableRow
               key={row.name}
             >
-              <TableCell component="th" scope="row">
+              <TableCell className='data' component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell >{row.duedate}</TableCell>
-              <TableCell >{row.value}</TableCell>
+              <TableCell className='data' >{row.duedate}</TableCell>
+              <TableCell className='data' >{row.value}</TableCell>
             </TableRow>
           ))}
         </TableBody>
