@@ -1,0 +1,31 @@
+.container-card-amount {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 31.6%;
+    height: 111px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.125rem;
+    font-weight: bold;
+    border-radius: 30px;
+    color: #343447;
+}
+
+.amount-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.amount-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.amount-value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 4px;
+}

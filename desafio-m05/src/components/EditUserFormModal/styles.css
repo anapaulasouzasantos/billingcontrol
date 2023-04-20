@@ -1,0 +1,76 @@
+.main-div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-div span {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+
+    color: #344054;
+}
+
+.btn-close-modal {
+    all: unset;
+
+    position: absolute;
+
+    right: 0px;
+    top: 0;
+
+    width: 32px;
+    height: 30px;
+
+    cursor: pointer;
+}
+
+.btn-close-modal:hover {
+    transform: scale(110%);
+}
+
+.main-div>h1 {
+    margin-bottom: 12px;
+
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 130%;
+
+    text-align: center;
+
+    color: #343447;
+}
+
+.main-div-input-and-span {
+    display: flex;
+    gap: 30px;
+}
+
+.edit-user-form-btn {
+    align-self: center;
+    width: 160px;
+    height: 33px;
+
+    border-radius: 10px;
+    border: none;
+    background-color: #DA0175;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+
+    color: #F8F8F9;
+
+    cursor: pointer;
+}
+
+.edit-user-form-btn:hover {
+    background-color: #da0175c2
+}

@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    font-family: sans-serif;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+
+    width: 500px;
+    height: 100vh;
+    padding-top: 174px;
+    padding-left: 49px;
+    background-color: #F0F0F5;
+}
+
+.stepper-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    width: 940px;
+    background-color: #F8F8F9;
+}
+
+.continue-button {
+    align-self: center;
+
+    margin-top: 18px;
+    margin-bottom: 15px;
+
+    width: 160px;
+    height: 33px;
+
+    color: #FFFFFF;
+    background: #DA0175;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+span {
+    align-self: center;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 130%;
+
+    color: #3F3F55;
+}
+
+.error-message-span {
+    margin-top: 10px;
+    color: red;
+}
+
+a {
+    color: #DA0175;
+    text-decoration: underline;
+    cursor: pointer;
+}
