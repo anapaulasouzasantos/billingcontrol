@@ -5,10 +5,12 @@ import ClientsIcon from '../../assets/clients-icon.svg';
 import HomeIcon from '../../assets/home-icon.svg';
 import SelectedClientsIcon from '../../assets/selected-clients.svg';
 import SelectedHomeIcon from '../../assets/selected-home.svg';
-import api from '../../config/api.jsx'
+import api from '../../config/api.jsx';
+import { getItem } from '../../functions/storage.jsx';
 import './styles.css';
 
 function Sidebar() {
+    const token = getItem('token');
     const { pageContent, setPageContent, setClientsData } = useContext(PageContext);
     const [selectHomeIcon, setSelectHomeIcon] = useState(true);
     const [selectClientsIcon, setSelectClientsIcon] = useState(false);
@@ -35,7 +37,11 @@ function Sidebar() {
     }
 
     async function reqTableData() {
-        const response = await api.get('/clients');
+        const response = await api.get('/clients',{
+            headers: { 
+                authorization: `Bearer ${token}` 
+            }
+        });
         setClientsData(response.data);
     }
 

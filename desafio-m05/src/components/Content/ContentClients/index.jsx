@@ -4,10 +4,11 @@ import ClientsIcon from '../../../assets/clients-icon.svg'
 import SearchIcon from '../../../assets/search-icon.svg'
 import TableClients from '../../TableClients'
 import PageContext from '../../../context/context'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 const ContentClients = () => {
-  const { setOpenModalClient } = useContext(PageContext)
+  const { setOpenModalClient } = useContext(PageContext);
+  const [renderTable, setRenderTable] = useState(true);
   return (
     <div className='container-content-clients'>
       <div className='content-top'>
@@ -22,7 +23,7 @@ const ContentClients = () => {
         </div>
       </div>
       <div className='table-clients'>
-        <TableClients></TableClients>
+        {renderTable && <TableClients />}
       </div>
     </div>
   )

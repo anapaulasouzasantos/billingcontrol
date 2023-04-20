@@ -12,9 +12,11 @@ import ClientsIcon from '../../assets/clients-icon.svg'
 import './styles.css';
 import PageContext from '../../context/context'
 import { useContext } from 'react';
-import api from '../../config/api'
+import api from '../../config/api';
+import { getItem } from '../../functions/storage.jsx';
 
 export default function AddClientForm() {
+    const token = getItem('token');
     const { setOpenModalClient } = useContext(PageContext)
     const [userForm, setUserForm] = React.useState({
         name: '',
@@ -37,8 +39,10 @@ export default function AddClientForm() {
         const data = Object.fromEntries(Object.entries(userForm).filter(([key, value]) => {
             return value !== ''
         }));
-        const response = await api.post('/clients', data);
-        setOpenModalClient(false)
+        const response = await api.post('/clients', data, {headers:{ 
+            authorization: `Bearer ${token}` 
+        }});
+        setOpenModalClient(false);
     }
 
     return (

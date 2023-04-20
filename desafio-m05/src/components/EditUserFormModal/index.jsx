@@ -9,16 +9,20 @@ import TextField from '@mui/material/TextField';
 import * as React from 'react';
 import CloseIcon from '../../assets/close-icon.svg';
 import './styles.css';
+import api from '../../config/api';
+import { getItem, setItem } from '../../functions/storage';
+import { useEffect } from 'react';
 
 export default function EditUserForm({ setOpen }) {
+    const token = getItem('token');
     const [showPassword, setShowPassword] = React.useState(true);
     const [showConfirmPassword, setShowConfirmPassword] = React.useState(true);
     const [userForm, setUserForm] = React.useState({
         name: '',
         email: '',
         cpf: '',
-        telephone: '',
-        newPassword: '',
+        tel: '',
+        password: '',
         confirmPassword: ''
     });
 
@@ -31,6 +35,31 @@ export default function EditUserForm({ setOpen }) {
 
     const handleOnChangeUserForm = (e) => {
         setUserForm({ ...userForm, [e.target.name]: e.target.value });
+    }
+
+    useEffect(()=>{
+        async function getUserInfo(){
+            const data = {email: getItem("email")}
+            console.log(data)
+            const response = await api.get('/users', {data}, {headers:{ 
+                authorization: `Bearer ${token}` 
+            }});
+            console.log(response) 
+        }
+        getUserInfo();
+    });
+
+    async function handleSubmit() {
+        const data = Object.fromEntries(Object.entries(userForm).filter(([key, value]) => {
+            return value !== '' && key !== 'confirmPassword'
+        }));
+        console.log(data)
+        const response = await api.put('/users', data, {headers:{ 
+            authorization: `Bearer ${token}` 
+        }});
+
+        setItem('email', response.data.email )
+        setItem('name', response.data.name )
     }
 
     return (
@@ -91,12 +120,12 @@ export default function EditUserForm({ setOpen }) {
                 <div className='div-input-and-span'>
                     <span>Telefone</span>
                     <TextField
-                        name='telephone'
+                        name='tel'
                         placeholder='Digite seu Telefone'
                         sx={{ m: 1, width: '178px', margin: '6px 0 0 0' }}
                         size='small'
                         onChange={(e) => handleOnChangeUserForm(e)}
-                        value={userForm.telephone}
+                        value={userForm.tel}
                     />
                 </div>
             </div>
@@ -105,7 +134,7 @@ export default function EditUserForm({ setOpen }) {
                 <FormControl sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }} variant="outlined">
                     <OutlinedInput
                         required
-                        name='newPassword'
+                        name='password'
                         size='small'
                         type={showPassword ? 'password' : 'text'}
                         endAdornment={
@@ -121,7 +150,7 @@ export default function EditUserForm({ setOpen }) {
                             </InputAdornment>
                         }
                         onChange={(e) => handleOnChangeUserForm(e)}
-                        value={userForm.newPassword}
+                        value={userForm.password}
                     />
                 </FormControl>
             </div>
@@ -151,7 +180,7 @@ export default function EditUserForm({ setOpen }) {
                 </FormControl>
             </div>
             <button className='edit-user-form-btn'
-                onClick={() => console.log(userForm)}
+                onClick={()=>handleSubmit()}
             >
                 Aplicar
             </button>

@@ -14,6 +14,7 @@ import './styles.css';
 
 export default function BasicTable() {
   const { clientsData } = useContext(PageContext);
+  
   return (
     <TableContainer component={Paper} sx={{ borderRadius: '30px' }}>
       <Table >
