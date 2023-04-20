@@ -33,8 +33,8 @@ export default function AddClientForm() {
         setUserForm({ ...userForm, [e.target.name]: e.target.value });
     }
 
-    async function handleSubmit(){
-        const data = Object.fromEntries(Object.entries(userForm).filter(([key, value])=>{
+    async function handleSubmit() {
+        const data = Object.fromEntries(Object.entries(userForm).filter(([key, value]) => {
             return value !== ''
         }));
         const response = await api.post('/clients', data);
@@ -42,7 +42,7 @@ export default function AddClientForm() {
     }
 
     return (
-        <Box 
+        <Box
             className='main-div'
             sx={{
                 height: '100%',
@@ -67,35 +67,30 @@ export default function AddClientForm() {
             <div className='container-form'>
                 <div className='input-form'>
                     <span>Nome*</span>
-                    <TextField
-                       required
+                    <input
+                        required
                         name='name'
                         placeholder='Digite seu nome'
-                        sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }}
-                        size='small'
                         onChange={(e) => handleOnChangeUserForm(e)}
                         value={userForm.name}
                     />
                 </div>
                 <div className='input-form'>
                     <span>E-mail*</span>
-                    <TextField
+                    <input
                         name='email'
                         placeholder='Digite o e-mail'
-                        sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }}
                         size='small'
                         onChange={(e) => handleOnChangeUserForm(e)}
                         value={userForm.email}
                     />
                 </div>
-                <div className='main-div-input-and-span'>
-                    <div className='input-form'>
+                <div className='d-container-input'>
+                    <div className='input-form' style={{ marginRight: '4%' }}>
                         <span>CPF*</span>
-                        <TextField
-                            
+                        <input
                             name='cpf'
                             placeholder='Digite o CPF'
-                            sx={{ m: 1, width: '178px', margin: '6px 0 0 0' }}
                             size='small'
                             onChange={(e) => handleOnChangeUserForm(e)}
                             value={userForm.cpf}
@@ -103,10 +98,9 @@ export default function AddClientForm() {
                     </div>
                     <div className='input-form'>
                         <span>Telefone*</span>
-                        <TextField
+                        <input
                             name='tel'
                             placeholder='Digite o Telefone'
-                            sx={{ m: 1, width: '178px', margin: '6px 0 0 0' }}
                             size='small'
                             onChange={(e) => handleOnChangeUserForm(e)}
                             value={userForm.tel}
@@ -115,69 +109,59 @@ export default function AddClientForm() {
                 </div>
                 <div className='input-form'>
                     <span>Endereço</span>
-                    <TextField
+                    <input
                         name='street'
                         placeholder='Digite o endereço'
-                        sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }}
-                        size='small'
                         onChange={(e) => handleOnChangeUserForm(e)}
                         value={userForm.street}
+
                     />
                 </div>
-                <div className='input-form'>
+                <div className='input-form' >
                     <span>Complemento</span>
-                    <TextField
+                    <input
                         name='complement'
                         placeholder='Digite o complemento'
-                        sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }}
-                        size='small'
                         onChange={(e) => handleOnChangeUserForm(e)}
                         value={userForm.complement}
+
                     />
                 </div>
-                <div className='main-div-input-and-span'>
-                    <div className='input-form'>
+                <div className='d-container-input'>
+                    <div className='input-form' style={{ marginRight: '4%' }}>
                         <span>CEP</span>
-                        <TextField
+                        <input
                             name='cep'
                             placeholder='Digite o CEP'
-                            sx={{ m: 1, width: '178px', margin: '6px 0 0 0' }}
-                            size='small'
                             onChange={(e) => handleOnChangeUserForm(e)}
                             value={userForm.cep}
                         />
                     </div>
                     <div className='input-form'>
                         <span>Bairro</span>
-                        <TextField
+                        <input
                             name='neighborhood'
                             placeholder='Digite o bairro'
-                            sx={{ m: 1, width: '178px', margin: '6px 0 0 0' }}
-                            size='small'
                             onChange={(e) => handleOnChangeUserForm(e)}
                             value={userForm.neighborhood}
                         />
                     </div>
                 </div>
-                <div className='main-div-input-and-span'>
-                    <div className='input-form'>
+                <div className='d-container-input'>
+                    <div className='input-form' style={{ marginRight: '4%' }}>
                         <span>Cidade</span>
-                        <TextField
+                        <input
                             name='city'
                             placeholder='Digite a cidade'
-                            sx={{ m: 1, width: '178px', margin: '6px 0 0 0' }}
-                            size='small'
                             onChange={(e) => handleOnChangeUserForm(e)}
                             value={userForm.city}
                         />
                     </div>
                     <div className='input-form'>
                         <span>UF</span>
-                        <TextField
+                        <input
                             name='state'
                             placeholder='Digite a UF'
-                            sx={{ m: 1, width: '178px', margin: '6px 0 0 0' }}
-                            size='small'
                             onChange={(e) => handleOnChangeUserForm(e)}
                             value={userForm.state}
                         />
