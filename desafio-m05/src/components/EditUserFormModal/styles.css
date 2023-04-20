@@ -14,13 +14,13 @@
     color: #344054;
 }
 
-.btn-close-modal {
+.btn-close-modal-edit-user {
     all: unset;
 
     position: absolute;
 
     right: 0px;
-    top: 0;
+    top: 29px;
 
     width: 32px;
     height: 30px;
@@ -28,7 +28,7 @@
     cursor: pointer;
 }
 
-.btn-close-modal:hover {
+.btn-close-modal-edit-user:hover {
     transform: scale(110%);
 }
 
@@ -73,4 +73,25 @@
 
 .edit-user-form-btn:hover {
     background-color: #da0175c2
+}
+
+.edit-user-input {
+    background-color: red;
+}
+
+.visibility-btn {
+    all: unset;
+
+    position: absolute;
+    align-self: center;
+
+    right: 14px;
+    top: 35px;
+    cursor: pointer;
+
+    opacity: 50%;
+}
+
+.container-edit-form {
+    gap: 20px;
 }
