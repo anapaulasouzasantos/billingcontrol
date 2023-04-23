@@ -1,0 +1,77 @@
+.container-modal {
+    width: 96%;
+    height: 96%;
+}
+
+.modal-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.modal-top img {
+    width: 30px;
+}
+
+.close-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.container-modal form {
+    align-items: flex-start;
+    width: 100%;
+    height: auto;
+}
+
+.container-modal label{
+    width: 98%;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #3F3F55;
+}
+
+.container-modal input {
+    all: unset;
+    height: auto;
+    width: 100%;
+    border: 1px solid #D0D5DD;
+    border-radius: 8px;
+    padding: 2% 0;
+}
+
+.group-div{
+    width: 100%;
+    justify-content: space-between;
+}
+
+
+.group-div label{
+    width: 48%;
+}
+
+::placeholder {
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    color: #3F3F55;
+}
+
+.modal-bottom {
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 5%;
+}
+
+.modal-bottom button {
+    width: 48%;
+    height: 100%;
+    cursor: pointer;
+}
