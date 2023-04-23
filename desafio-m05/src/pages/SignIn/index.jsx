@@ -35,7 +35,7 @@ function SignIn() {
     } catch (error) {
       setEmail('');
       setPassword('');
-      setErrorMessage(error.response.data.mensagem);
+      setErrorMessage('E-mail ou senha inválidos!');
     }
   }
 
@@ -79,7 +79,7 @@ function SignIn() {
           </div>
           {errorMessage && <span className='error-message' >{errorMessage}</span>}
           <div className='container-enter' >
-            <button className='btn-enter' style={{cursor: 'pointer'}} >Entrar</button>
+            <button className='btn-enter' style={{ cursor: 'pointer' }} >Entrar</button>
             <span>Ainda não possui uma conta? <Link to='/signup'>Cadastre-se</Link></span>
           </div>
         </form>
