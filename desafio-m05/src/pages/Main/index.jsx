@@ -18,6 +18,7 @@ function Main() {
     const [headerTitle, setHeaderTitle] = useState('Resumo das Cobranças');
     const [titleClassName, setTitleClassName] = useState('');
     const [clientsData, setClientsData] = useState([]);
+    const [modalProfile, setModalProfile] = useState(false);
 
     return (
         <PageContext.Provider
@@ -28,7 +29,8 @@ function Main() {
                 clientsData, setClientsData,
                 modalClientTitle, setModalClientTitle,
                 headerTitle, setHeaderTitle,
-                titleClassName, setTitleClassName
+                titleClassName, setTitleClassName,
+                modalProfile, setModalProfile
             }}
         >
             <div className="main-container">

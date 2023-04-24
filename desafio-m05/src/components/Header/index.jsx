@@ -8,8 +8,7 @@ import PageContext from '../../context/context.jsx';
 
 function Header() {
     const name = getItem('name');
-    const { open, headerTitle,titleClassName } = useContext(PageContext);
-    const [modalProfile, setModalProfile] = useState(false);
+    const { open, headerTitle, titleClassName, modalProfile, setModalProfile } = useContext(PageContext);
 
     return (
         <header>
