@@ -31,7 +31,7 @@ function Main() {
                 modalClientTitle, setModalClientTitle,
                 headerTitle, setHeaderTitle,
                 titleClassName, setTitleClassName,
-                chargesData, setChargesData
+                chargesData, setChargesData,
                 modalProfile, setModalProfile
             }}
         >
