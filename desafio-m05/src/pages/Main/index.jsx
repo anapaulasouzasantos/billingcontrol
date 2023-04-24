@@ -19,6 +19,7 @@ function Main() {
     const [titleClassName, setTitleClassName] = useState('');
     const [clientsData, setClientsData] = useState([]);
     const [chargesData, setChargesData] = useState([]);
+    const [modalProfile, setModalProfile] = useState(false);
 
     return (
         <PageContext.Provider
@@ -31,6 +32,7 @@ function Main() {
                 headerTitle, setHeaderTitle,
                 titleClassName, setTitleClassName,
                 chargesData, setChargesData
+                modalProfile, setModalProfile
             }}
         >
             <div className="main-container">
