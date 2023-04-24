@@ -15,6 +15,8 @@ function Main() {
     const [open, setOpen] = useState(false);
     const [openModalClient, setOpenModalClient] = useState(false);
     const [modalClientTitle, setModalClientTitle] = useState('');
+    const [headerTitle, setHeaderTitle] = useState('Resumo das Cobranças');
+    const [titleClassName, setTitleClassName] = useState('');
     const [clientsData, setClientsData] = useState([]);
 
     return (
@@ -24,7 +26,9 @@ function Main() {
                 open, setOpen,
                 openModalClient, setOpenModalClient,
                 clientsData, setClientsData,
-                modalClientTitle, setModalClientTitle
+                modalClientTitle, setModalClientTitle,
+                headerTitle, setHeaderTitle,
+                titleClassName, setTitleClassName
             }}
         >
             <div className="main-container">

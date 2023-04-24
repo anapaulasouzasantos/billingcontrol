@@ -12,12 +12,15 @@ import './styles.css';
 
 function Sidebar() {
     const token = getItem('token');
-    const { pageContent, setPageContent, setClientsData } = useContext(PageContext);
+    const { pageContent, setPageContent, setClientsData, setHeaderTitle,setTitleClassName } = useContext(PageContext);
     const [selectHomeIcon, setSelectHomeIcon] = useState(true);
     const [selectClientsIcon, setSelectClientsIcon] = useState(false);
     const [selectChargeIcon, setSelectChargeIcon] = useState(false);
+
     const handleClickHomeIcon = () => {
         setPageContent('home');
+        setHeaderTitle('Resumo das Cobranças')
+        setTitleClassName('home-title-style')
         setSelectHomeIcon(true);
         setSelectClientsIcon(false);
         setSelectChargeIcon(false);
@@ -25,14 +28,18 @@ function Sidebar() {
 
     const handleClickClientsIcon = () => {
         reqTableData()
+        setHeaderTitle('Clientes')
         setPageContent('clients');
+        setTitleClassName('clients-title-style')
         setSelectHomeIcon(false);
         setSelectClientsIcon(true);
         setSelectChargeIcon(false);
     }
 
     const handleClickChargeIcon = () => {
+        setHeaderTitle('Cobranças')
         setPageContent('charge');
+        setTitleClassName('charge-title-style')
         setSelectHomeIcon(false);
         setSelectClientsIcon(false);
         setSelectChargeIcon(true);

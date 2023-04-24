@@ -7,13 +7,13 @@ import { getItem } from '../../functions/storage';
 import PageContext from '../../context/context.jsx';
 
 function Header() {
-    const { open, pageContent } = useContext(PageContext);
     const name = getItem('name');
+    const { open, headerTitle,titleClassName } = useContext(PageContext);
     const [modalProfile, setModalProfile] = useState(false);
 
     return (
         <header>
-            <h1>{pageContent === 'home' ? 'Resumo das Cobranças' : 'Clientes'}</h1>
+            <h1 className={titleClassName}>{headerTitle}</h1>
             <div className='profile-div'>
                 <LetterAvatars />
                 <span>{name}</span>
