@@ -8,16 +8,20 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import UpDownArrow from '../../assets/updown-arrows.svg';
 import AddChargeIcon from '../../assets/add-charge-icon.svg';
+import Edit from '../../assets/edit-profile.svg';
+import Delete from '../../assets/delete-icon.svg';
 import PageContext from '../../context/context.jsx';
 import { useContext, useEffect } from 'react';
 import './styles.css';
 
 export default function BasicTable() {
-  const { chargesData, setPageContent, setHeaderTitle } = useContext(PageContext);
+  const date = Date.now();
+  const { chargesData, setPageContent, setHeaderTitle, setTitleClassName } = useContext(PageContext);
 
   function handleChange() {
     setPageContent('detail');
-    setHeaderTitle('Clientes >');
+    setHeaderTitle('Clientes');
+    setTitleClassName('details-title-style')
   }
 
   return (
@@ -37,6 +41,8 @@ export default function BasicTable() {
             <TableCell>Data de venc.</TableCell>
             <TableCell>Status</TableCell>
             <TableCell>Descrição</TableCell>
+            <TableCell></TableCell>
+            <TableCell></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -49,11 +55,24 @@ export default function BasicTable() {
                 onClick={() => handleChange()}
               >{row.name}
               </TableCell>
-              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>{row.id}</TableCell>
-              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>{row.amount}</TableCell>
-              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }} >{row.due_date}</TableCell>
-              <TableCell><span className='overdue-client'>data vencimento</span></TableCell>
-              <TableCell><span className='overdue-client'>{row.description}</span></TableCell>
+              <TableCell
+                sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}
+              >{row.id}
+              </TableCell>
+              <TableCell
+                sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}
+              >{`R$ ${(((row.amount) / 100).toFixed(2)).replace('.', ',')}`}
+              </TableCell>
+              <TableCell
+                sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}
+              >{((row.due_date).slice(0,10))}
+              </TableCell>
+              <TableCell><span>
+                status
+              </span></TableCell>
+              <TableCell><span >{row.description}</span></TableCell>
+              <TableCell><img src={Edit}></img></TableCell>
+              <TableCell><img src={Delete}></img></TableCell>
             </TableRow>
           ))}
         </TableBody>

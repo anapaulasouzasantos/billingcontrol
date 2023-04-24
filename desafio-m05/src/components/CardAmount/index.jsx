@@ -1,4 +1,4 @@
-import './styles.css'
+import './CardAmount.css';
 
 const CardAmount = ({ title, value, icon, bgcolor }) => {
     return (

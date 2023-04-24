@@ -17,12 +17,18 @@ header {
     color: #343447;
 }
 
-.clients-title-style, .charge-title-style {
+.clients-title-style, .charge-title-style,.details-title-style {
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-size: 16px;
     align-self: self-end;
     color: #0E8750;
+}
+
+.details-title-style::after{
+    content: '> Detalhes do cliente';
+    color: #747488;
+    padding-left: 15px;
 }
 
 .profile-div {

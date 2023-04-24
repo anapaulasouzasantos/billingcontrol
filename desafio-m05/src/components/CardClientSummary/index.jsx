@@ -1,5 +1,5 @@
 import TableClientSummary from '../TableClientSummary'
-import './styles.css';
+import './CardClientSummary.css';
 
 const CardClientSummary = ({ title, icon, count, bgcolor, color }) => {
   return (

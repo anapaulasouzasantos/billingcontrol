@@ -13,11 +13,12 @@ import { useContext, useEffect } from 'react';
 import './styles.css';
 
 export default function BasicTable() {
-  const { clientsData, setPageContent, setHeaderTitle } = useContext(PageContext);
+  const { clientsData, setPageContent, setHeaderTitle,setTitleClassName } = useContext(PageContext);
 
   function handleChange() {
     setPageContent('detail');
-    setHeaderTitle('Clientes >');
+    setHeaderTitle('Clientes');
+    setTitleClassName('details-title-style');
   }
 
   return (

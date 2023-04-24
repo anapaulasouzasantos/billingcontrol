@@ -1,4 +1,4 @@
-import './styles.css';
+import './TableBillingSummary.css';
 import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';

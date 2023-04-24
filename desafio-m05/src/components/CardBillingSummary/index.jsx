@@ -1,5 +1,5 @@
 import TableBillingSummary from '../TableBillingSummary'
-import './styles.css';
+import './CardBillingSummary.css';
 
 const CardBillingSumary = ({ title, count, bgcolor, color }) => {
   return (
