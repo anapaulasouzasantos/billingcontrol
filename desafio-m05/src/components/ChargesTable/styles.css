@@ -1,0 +1,35 @@
+.up-down-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.subtitle-charges-table {
+    font-family: 'Nunito', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 50px;
+
+    color: #3F3F55;
+}
+
+.table-contents {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 40px;
+
+    color: #6E6E85;
+}
+
+.expired-status {
+    width: 67px;
+    height: 19px;
+    padding: 0px 8px;
+
+    background: #FFEFEF;
+    color: #971D1D;
+
+    border-radius: 8px;
+}
