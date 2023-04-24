@@ -1,8 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.flex-row{
+    display: flex;
+}
+
+.flex-column{
+    flex-direction: column;
+}
+
+.flex-center{
+    align-items: center;
+    justify-content: center;
+}
+
+.button-aply, .button-cancel{
+    all: unset;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.button-aply{
+    background-color: #DA0175;
+    color: #F8F8F9;
+}
+
+.button-cancel{
+    border: 1px solid #DEDEE9;
+    background-color: #F8F8F9;
+    color: #0E8750;
 }

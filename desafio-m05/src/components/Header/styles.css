@@ -1,24 +1,27 @@
 header {
     display: flex;
-    align-items: last baseline;
+    align-items: center;
     justify-content: space-between;
-
     width: calc(100% - 160px);
     height: 112px;
-
-    padding: 0 150px 24px 50px;
-
     border-bottom: 1px solid #ACD9C5;
 }
 
-header>h1 {
+.home-title-style {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: 600;
     font-size: 26px;
     line-height: 130%;
-
     color: #343447;
+}
+
+.clients-title-style, .charge-title-style {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    align-self: self-end;
+    color: #0E8750;
 }
 
 .profile-div {

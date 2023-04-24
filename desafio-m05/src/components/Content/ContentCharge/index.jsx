@@ -2,7 +2,7 @@ import './styles.css';
 
 const ContentCharge = () => {
   return (
-    <div>index</div>
+    <div>Page Cobranças</div>
   )
 }
 

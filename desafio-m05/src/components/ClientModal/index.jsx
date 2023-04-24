@@ -1,24 +1,23 @@
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import AddClientForm from '../AddClientForm';
-import PageContext from '../../context/context'
 import { useContext } from 'react';
+import PageContext from '../../context/context';
+import ClientForm from '../ClientForm';
 
 const style = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '35%',
-  height: 'auto',
+  width: '30%',
+  height: '85%',
   bgcolor: 'background.paper',
   boxShadow: 24,
   borderRadius: '30px',
-  p: 4,
+  p: 2
 };
 
-export default function AddClientModal() {
-  const { openModalClient, setOpenModalClient } = useContext(PageContext)
+export default function ClientModal() {
+  const { openModalClient, setOpenModalClient, modalClientTitle} = useContext(PageContext)
   const handleClose = () => setOpenModalClient(false);
 
   return (
@@ -31,11 +30,11 @@ export default function AddClientModal() {
         sx={{
           display: 'flex',
           justifyContent: 'center',
-          alignItems: 'center'
+          alignItems: 'center',
         }}
       >
         <Box sx={style} >
-          <AddClientForm />
+          <ClientForm />
         </Box>
       </Modal>
     </div>
