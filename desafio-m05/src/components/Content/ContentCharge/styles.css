@@ -1,0 +1,11 @@
+.container-page-charges-content{
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    border: 1px solid red;
+}
+
+.top-charge-content{
+    align-items: center;
+    justify-content: space-between;
+}

@@ -13,7 +13,7 @@ import { useContext, useEffect } from 'react';
 import './styles.css';
 
 export default function BasicTable() {
-  const { clientsData, setPageContent, setHeaderTitle } = useContext(PageContext);
+  const { chargesData, setPageContent, setHeaderTitle } = useContext(PageContext);
 
   function handleChange() {
     setPageContent('detail');
@@ -25,22 +25,22 @@ export default function BasicTable() {
       <Table >
         <TableHead>
           <TableRow>
-            <TableCell sx={{
-              display: 'flex',
-              alignItems: 'center'
-            }}>
+            <TableCell >
               <img src={UpDownArrow}></img>
               Cliente
             </TableCell>
-            <TableCell >CPF</TableCell>
-            <TableCell>E-mail</TableCell>
-            <TableCell>Telefone</TableCell>
+            <TableCell >
+              <img src={UpDownArrow}></img>
+              ID Cob.
+            </TableCell>
+            <TableCell>Valor</TableCell>
+            <TableCell>Data de venc.</TableCell>
             <TableCell>Status</TableCell>
-            <TableCell>Criar Cobrança</TableCell>
+            <TableCell>Descrição</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {clientsData.map((row) => (
+          {chargesData.map((row) => (
             <TableRow className='table-cell'>
               <TableCell
                 sx={{
@@ -49,20 +49,11 @@ export default function BasicTable() {
                 onClick={() => handleChange()}
               >{row.name}
               </TableCell>
-              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>{row.cpf}</TableCell>
-              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>{row.email}</TableCell>
-              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }} >{row.tel}</TableCell>
-              <TableCell><span className='overdue-client'>{row.status}</span></TableCell>
-              <TableCell sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer'
-              }}>
-                <img src={AddChargeIcon} />
-                <span style={{ color: '#DA0175', fontSize: '8px', fontWeight: 'bold' }}>Cobrança</span>
-              </TableCell>
+              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>{row.id}</TableCell>
+              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>{row.amount}</TableCell>
+              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }} >{row.due_date}</TableCell>
+              <TableCell><span className='overdue-client'>data vencimento</span></TableCell>
+              <TableCell><span className='overdue-client'>{row.description}</span></TableCell>
             </TableRow>
           ))}
         </TableBody>
