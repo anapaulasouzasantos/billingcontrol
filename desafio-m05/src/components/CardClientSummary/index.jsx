@@ -1,4 +1,4 @@
-import TableClient from '../TableClient'
+import TableClientSummary from '../TableClientSummary'
 import './styles.css';
 
 const CardClientSummary = ({ title, icon, count, bgcolor, color }) => {
@@ -11,7 +11,7 @@ const CardClientSummary = ({ title, icon, count, bgcolor, color }) => {
         </div>
         <span style={{ backgroundColor: bgcolor, color: color }} className='client-summary-count'>{count}</span>
       </div>
-      <TableClient></TableClient>
+      <TableClientSummary></TableClientSummary>
       <span className='show-more'>Ver todos</span>
     </div>
   )
