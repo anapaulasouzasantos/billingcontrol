@@ -10,9 +10,11 @@ import CloseIcon from '../../assets/close-icon.svg';
 import './styles.css';
 import api from '../../config/api';
 import { getItem, setItem } from '../../functions/storage';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import PageContext from '../../context/context';
 
-export default function EditUserForm({ setOpen }) {
+export default function EditUserForm() {
+    const { setOpen, setModalProfile } = useContext(PageContext);
     const token = getItem('token');
     const [showPassword, setShowPassword] = useState(true);
     const [showConfirmPassword, setShowConfirmPassword] = useState(true);
@@ -35,6 +37,11 @@ export default function EditUserForm({ setOpen }) {
 
     const handleOnChangeUserForm = (e) => {
         setUserForm({ ...userForm, [e.target.name]: e.target.value });
+    }
+
+    const handleCloseModal = () => {
+        setOpen(false)
+        setModalProfile(false)
     }
 
     useEffect(() => {
@@ -67,16 +74,17 @@ export default function EditUserForm({ setOpen }) {
             }
         });
 
-        setItem('email', response.data.email)
-        setItem('name', response.data.name)
+        setItem('email', response.data.email);
+        setItem('name', response.data.name);
         setRenderForm(false);
-        setOpen(false)
+        setOpen(false);
+        setModalProfile(false);
     }
 
     return (
         <>
             {renderForm && <Box
-                className='main-div'
+                className='main-user-form-div'
                 sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -85,7 +93,7 @@ export default function EditUserForm({ setOpen }) {
                 }}>
                 <button
                     className='btn-close-modal-edit-user'
-                    onClick={() => setOpen(false)}
+                    onClick={() => handleCloseModal()}
                 >
                     <img
                         src={CloseIcon}
@@ -93,8 +101,8 @@ export default function EditUserForm({ setOpen }) {
                     />
                 </button>
                 <h1>Edite seu cadastro</h1>
-                <div className='container-form container-edit-form'>
-                    <div className='input-form'>
+                <div className='container-edit-form'>
+                    <div className='user-input-form'>
                         <span>Nome*</span>
                         <input
                             required
@@ -104,7 +112,7 @@ export default function EditUserForm({ setOpen }) {
                             value={userForm.name}
                         />
                     </div>
-                    <div className='input-form'>
+                    <div className='user-input-form'>
                         <span>E-mail*</span>
                         <input
                             name='email'
@@ -114,8 +122,8 @@ export default function EditUserForm({ setOpen }) {
                             value={userForm.email}
                         />
                     </div>
-                    <div className='d-container-input'>
-                        <div className='input-form' style={{ marginRight: '4%' }}>
+                    <div className='cpf-tel-container-input'>
+                        <div className='user-input-form' style={{ marginRight: '4%' }}>
                             <span>CPF*</span>
                             <input
                                 name='cpf'
@@ -125,7 +133,7 @@ export default function EditUserForm({ setOpen }) {
                                 value={userForm.cpf}
                             />
                         </div>
-                        <div className='input-form'>
+                        <div className='user-input-form'>
                             <span>Telefone*</span>
                             <input
                                 name='tel'
@@ -137,7 +145,7 @@ export default function EditUserForm({ setOpen }) {
                         </div>
                     </div>
                     <FormControl sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }} variant="outlined">
-                        <div className='input-form'>
+                        <div className='user-input-form'>
                             <span>Nova Senha*</span>
                             <input
                                 required
@@ -156,7 +164,7 @@ export default function EditUserForm({ setOpen }) {
                         </div>
                     </FormControl>
                     <FormControl sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }} variant="outlined">
-                        <div className='input-form'>
+                        <div className='user-input-form'>
                             <span>Confirmar Senha*</span>
                             <input
                                 required
