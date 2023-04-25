@@ -1,5 +1,5 @@
-import TableBilling from '../TableBilling'
-import './styles.css';
+import TableBillingSummary from '../TableBillingSummary'
+import './CardBillingSummary.css';
 
 const CardBillingSumary = ({ title, count, bgcolor, color }) => {
   return (
@@ -8,7 +8,7 @@ const CardBillingSumary = ({ title, count, bgcolor, color }) => {
         <span className='billing-summary-title'>{title}</span>
         <span style={{ backgroundColor: bgcolor, color: color }} className='billing-summary-count'>{count}</span>
       </div>
-      <TableBilling></TableBilling>
+      <TableBillingSummary></TableBillingSummary>
       <span className='show-more'>Ver todos</span>
     </div>
   )

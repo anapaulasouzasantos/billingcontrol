@@ -12,10 +12,16 @@ import './styles.css';
 
 function Sidebar() {
     const token = getItem('token');
-    const { pageContent, setPageContent, setClientsData, setHeaderTitle,setTitleClassName } = useContext(PageContext);
     const [selectHomeIcon, setSelectHomeIcon] = useState(true);
     const [selectClientsIcon, setSelectClientsIcon] = useState(false);
     const [selectChargeIcon, setSelectChargeIcon] = useState(false);
+
+    const {
+        pageContent, setPageContent,
+        setClientsData,
+        setChargesData,
+        setHeaderTitle,
+        setTitleClassName } = useContext(PageContext);
 
     const handleClickHomeIcon = () => {
         setPageContent('home');
@@ -27,7 +33,7 @@ function Sidebar() {
     }
 
     const handleClickClientsIcon = () => {
-        reqTableData()
+        clientsTableData()
         setHeaderTitle('Clientes')
         setPageContent('clients');
         setTitleClassName('clients-title-style')
@@ -37,6 +43,7 @@ function Sidebar() {
     }
 
     const handleClickChargeIcon = () => {
+        chargesTableData()
         setHeaderTitle('Cobranças')
         setPageContent('charge');
         setTitleClassName('charge-title-style')
@@ -45,13 +52,23 @@ function Sidebar() {
         setSelectChargeIcon(true);
     }
 
-    async function reqTableData() {
+    async function clientsTableData() {
         const response = await api.get('/clients', {
             headers: {
                 authorization: `Bearer ${token}`
             }
         });
         setClientsData(response.data);
+    }
+
+    async function chargesTableData() {
+        const response = await api.get('/billings', {
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        });
+        console.log(response)
+        setChargesData(response.data);
     }
 
     return (

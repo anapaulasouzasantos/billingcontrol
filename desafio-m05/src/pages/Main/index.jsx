@@ -11,13 +11,15 @@ import PageContext from '../../context/context.jsx';
 import './styles.css';
 
 function Main() {
-    const [pageContent, setPageContent] = useState('detail');
+    const [pageContent, setPageContent] = useState('home');
     const [open, setOpen] = useState(false);
     const [openModalClient, setOpenModalClient] = useState(false);
     const [modalClientTitle, setModalClientTitle] = useState('');
     const [headerTitle, setHeaderTitle] = useState('Resumo das Cobranças');
     const [titleClassName, setTitleClassName] = useState('');
     const [clientsData, setClientsData] = useState([]);
+    const [chargesData, setChargesData] = useState([]);
+    const [modalProfile, setModalProfile] = useState(false);
 
     return (
         <PageContext.Provider
@@ -28,7 +30,9 @@ function Main() {
                 clientsData, setClientsData,
                 modalClientTitle, setModalClientTitle,
                 headerTitle, setHeaderTitle,
-                titleClassName, setTitleClassName
+                titleClassName, setTitleClassName,
+                chargesData, setChargesData,
+                modalProfile, setModalProfile
             }}
         >
             <div className="main-container">
