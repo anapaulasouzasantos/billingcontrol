@@ -9,6 +9,7 @@ import Header from '../../components/Header';
 import Sidebar from '../../components/Sidebar';
 import PageContext from '../../context/context.jsx';
 import './styles.css';
+import '../../utils/input.css'
 
 function Main() {
     const [pageContent, setPageContent] = useState('home');

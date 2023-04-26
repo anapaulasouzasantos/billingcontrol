@@ -7,11 +7,20 @@
     color: #3F3F55;
 }
 
-.data {
+.data .bg-red {
     font-family: 'Nunito', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
-
+    background-color: red;
     color: #747488;
+}
+
+/* .MuiTable-root {
+    background-color: red;
+    color: white;
+} */
+
+.bg-red {
+    background-color:red !important;
 }

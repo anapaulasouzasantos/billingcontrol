@@ -13,9 +13,12 @@ import Delete from '../../assets/delete-icon.svg';
 import PageContext from '../../context/context.jsx';
 import { useContext, useEffect } from 'react';
 import './styles.css';
+import normalizeValue from '../../functions/normalizeValue.jsx';
+import normalizeDate from '../../functions/normalizeDate.jsx';
 
 export default function BasicTable() {
   const date = Date.now();
+  
   const { chargesData, setPageContent, setHeaderTitle, setTitleClassName } = useContext(PageContext);
 
   function handleChange() {
@@ -26,7 +29,7 @@ export default function BasicTable() {
 
   return (
     <TableContainer component={Paper} sx={{ borderRadius: '30px' }}>
-      <Table >
+      <Table>
         <TableHead>
           <TableRow>
             <TableCell >
@@ -47,30 +50,26 @@ export default function BasicTable() {
         </TableHead>
         <TableBody>
           {chargesData.map((row) => (
-            <TableRow className='table-cell'>
-              <TableCell
-                sx={{
-                  color: '#747488', fontFamily: 'Nunito', fontSize: '14px', cursor: 'pointer'
-                }}
-                onClick={() => handleChange()}
-              >{row.name}
+            <TableRow>
+              <TableCell className='charges-table-cell' onClick={() => handleChange()}>
+                {row.name}
               </TableCell>
-              <TableCell
-                sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}
-              >{row.id}
+              <TableCell className='charges-table-cell'>
+                {row.id}
               </TableCell>
-              <TableCell
-                sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}
-              >{`R$ ${(((row.amount) / 100).toFixed(2)).replace('.', ',')}`}
+              <TableCell className='charges-table-cell'>
+                {normalizeValue(row.amount)}
               </TableCell>
-              <TableCell
-                sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}
-              >{((row.due_date).slice(0,10))}
+              <TableCell className='charges-table-cell'>
+                {normalizeDate(row.due_date)}
+                {/* {((row.due_date).slice(0, 10))} */}
               </TableCell>
-              <TableCell><span>
-                status
-              </span></TableCell>
-              <TableCell><span >{row.description}</span></TableCell>
+              <TableCell className='charges-table-cell'>
+                {row.status}
+              </TableCell>
+              <TableCell className='charges-table-cell'>
+                {row.description}
+              </TableCell>
               <TableCell><img src={Edit}></img></TableCell>
               <TableCell><img src={Delete}></img></TableCell>
             </TableRow>

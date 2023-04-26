@@ -21,12 +21,11 @@ function SignIn() {
         return;
       }
 
-      const response = await api.post('/login', {
+      const login = await api.post('/login', {
         email,
         password
       });
-
-      const { token, user } = response.data;
+      const { token, user } = login.data;
 
       setItem('token', token);
       setItem('email', user.email);
