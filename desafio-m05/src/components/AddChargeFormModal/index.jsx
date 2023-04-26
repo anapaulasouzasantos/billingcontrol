@@ -1,12 +1,16 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useRef } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import './AddChargeFormModal.css';
 import FileIcon from '../../assets/file-icon.svg';
 import CloseIcon from '../../assets/close-icon.svg';
 import PageContext from '../../context/context';
+import { useForm } from 'react-hook-form';
 
 export default function AddChargeFormModal() {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = data => console.log(data);
+
     const { setOpenChargeModal } = useContext(PageContext);
 
     const [chargeForm, setChargeForm] = useState({
@@ -38,7 +42,10 @@ export default function AddChargeFormModal() {
             width: '100%',
             height: '100%'
         }}>
-            <form className='charge-modal-form'>
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+                className='charge-modal-form'
+            >
                 <div className='header-charge-modal-form'>
                     <img
                         src={FileIcon}
@@ -55,7 +62,7 @@ export default function AddChargeFormModal() {
                     />
                 </div>
                 <label
-                    for='name-id'
+                    htmlFor='name-id'
                 >
                     Nome*
                 </label>
@@ -64,13 +71,16 @@ export default function AddChargeFormModal() {
                     type='text'
                     id='name-id'
                     name='name'
-                    value={chargeForm.name}
-                    required
-                    onChange={(e) => handleChangeForm(e)}
+                    {...register('name', {
+                        required: true
+                    })}
+                    aria-invalid={errors.name ? "true" : "false"}
+                    style={errors.name && { border: "1px solid red" }}
                 />
+                {errors.name?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
                 <div className='description-div'>
                     <label
-                        for='description-id'
+                        htmlFor='description-id'
                     >
                         Descrição*
                     </label>
@@ -80,43 +90,53 @@ export default function AddChargeFormModal() {
                         id='description-id'
                         className='description'
                         name='description'
-                        value={chargeForm.description}
-                        required
-                        onChange={(e) => handleChangeForm(e)}
+                        {...register('description', {
+                            required: true
+                        })}
+                        aria-invalid={errors.description ? "true" : "false"}
+                        style={errors.description && { border: "1px solid red" }}
                     />
+                    {errors.description?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
                 </div>
                 <div className='row-div'>
                     <div className='due-data-div'>
                         <label
-                            for='due-date-id'
+                            htmlFor='due-date-id'
                         >
                             Vencimento:*
                         </label>
                         <input
-                            placeholder='Data de Vencimento'
-                            type='text'
+                            type='date'
                             id='due-date-id'
                             name='dueDate'
-                            value={chargeForm.dueDate}
-                            required
-                            onChange={(e) => handleChangeForm(e)}
+                            {...register('dueData', {
+                                required: true
+                            })}
+                            aria-invalid={errors.dueData ? "true" : "false"}
+                            style={errors.dueData && { border: "1px solid red" }}
                         />
+                        {errors.dueData?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
                     </div>
                     <div className='value-div'>
                         <label
-                            for='value-id,'
+                            htmlFor='value-id,'
                         >
                             Valor:*
                         </label>
                         <input
                             placeholder='Digite o valor'
-                            type='text'
+                            type='number'
                             id='value-id,'
                             name='value'
-                            value={chargeForm.value}
-                            required
-                            onChange={(e) => handleChangeForm(e)}
+                            {...register('value', {
+                                required: true,
+                                pattern: /^[0-9]/
+                            })}
+                            aria-invalid={errors.value ? "true" : "false"}
+                            style={errors.value && { border: "1px solid red" }}
                         />
+                        {errors.value?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
+                        {errors.value?.type === 'pattern' && <p role="alert">Valor inválido</p>}
                     </div>
                 </div>
                 <div className='status-div'>
@@ -129,7 +149,7 @@ export default function AddChargeFormModal() {
                                 name='status'
                                 value='payed'
                                 checked
-                                onChange={(e) => handleChangeForm(e)}
+                                {...register('status')}
                             />
                             <label htmlFor="payed">
                                 Cobrança Paga
@@ -141,7 +161,7 @@ export default function AddChargeFormModal() {
                                 id='pendent'
                                 name='status'
                                 value='pendent'
-                                onChange={(e) => handleChangeForm(e)}
+                                {...register('status')}
                             />
                             <label htmlFor="pendent">
                                 Cobrança Pendente
@@ -158,7 +178,6 @@ export default function AddChargeFormModal() {
                         Cancelar
                     </button>
                     <button
-                        type='button'
                         className='apply-btn'
                     >
                         Aplicar

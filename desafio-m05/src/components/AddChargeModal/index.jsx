@@ -9,7 +9,6 @@ import './AddChargeModalStyles.css';
 
 const style = {
     bgcolor: 'background.paper',
-    boxShadow: 24,
     borderRadius: '30px',
     p: 4,
 };

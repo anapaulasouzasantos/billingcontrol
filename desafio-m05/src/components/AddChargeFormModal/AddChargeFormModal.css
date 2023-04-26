@@ -8,6 +8,8 @@
 }
 
 .charge-modal-form input {
+    filter: none;
+    outline: none;
     font-family: 'Nunito';
     font-style: normal;
     font-weight: 400;
@@ -78,6 +80,7 @@
 }
 
 .description {
+    outline: none;
     width: 100%;
     height: 88px;
 
