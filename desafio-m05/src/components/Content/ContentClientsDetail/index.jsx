@@ -1,5 +1,6 @@
 import './styles.css';
 import ClientsIcon from '../../../assets/clients-icon.svg';
+import CustomerDataCard from '../../CustomerDataCard';
 import CardCustomerCharges from '../../CardCustomerCharges';
 
 const ContentClientsDetail = () => {
@@ -9,8 +10,10 @@ const ContentClientsDetail = () => {
         <img src={ClientsIcon} alt='client icon'></img>
         <h1>Sara Lage da Silva</h1>
       </div>
-      <div className='card-client-info'>Card dados do cliente</div>
-      <div>
+      <div className='card-client-info'>
+        <CustomerDataCard></CustomerDataCard>
+      </div>
+      <div className='card-customer-charges'>
         <CardCustomerCharges></CardCustomerCharges>
       </div>
     </div>
