@@ -5,13 +5,9 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import PageContext from '../../context/context';
 import AddChargeFormModal from '../AddChargeFormModal';
+import './AddChargeModalStyles.css';
 
 const style = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 491,
-    height: 623,
     bgcolor: 'background.paper',
     boxShadow: 24,
     borderRadius: '30px',
@@ -35,7 +31,7 @@ export default function AddChargeModal() {
                     alignItems: 'center',
                 }}
             >
-                <Box sx={style}>
+                <Box className='box-style' sx={style}>
                     <AddChargeFormModal />
                 </Box>
             </Modal>

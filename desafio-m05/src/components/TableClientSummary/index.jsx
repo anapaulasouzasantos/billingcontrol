@@ -1,25 +1,37 @@
-import './TableClientSummary.css';
-import * as React from 'react';
+import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import * as React from 'react';
+import { useContext, useEffect } from 'react';
+import PageContext from '../../context/context.jsx';
+import normalizeDate from '../../functions/normalizeDate';
+import normalizeValue from '../../functions/normalizeValue';
+import './TableClientSummary.css';
 
-function createData(name, duedate, value) {
-  return { name, duedate, value };
-}
+export default function BasicTable({ title }) {
+  const { chargesData } = useContext(PageContext);
 
-const rows = [
-  createData('Cameron Williamson', '03/02/2021', 'R$ 500,00'),
-  createData('Savannah Nguyen', '04/03/2021', 'R$ 500,00'),
-  createData('Darlene Robertson', '21/04/2021', 'R$ 500,00'),
-  createData('Marvin McKinney', '08/05/2021', 'R$ 500,00'),
-];
+  useEffect(() => {
+    handleTableData()
+  })
 
-export default function BasicTable() {
+  function handleTableData() {
+    const UpToDateCustomer = chargesData.filter(billing => (billing.status == 'Paga' || billing.status == 'Pendente'));
+    const defaultingCustomer = chargesData.filter(billing => (billing.status == 'Vencida'));
+
+    if (title === 'Clientes Inadimplentes') {
+      return defaultingCustomer
+    }
+
+    if (title === 'Clientes em dia') {
+      return UpToDateCustomer
+    }
+  }
+
   return (
     <TableContainer component={Paper}>
       <Table >
@@ -31,15 +43,19 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {handleTableData().map((row) => (
             <TableRow
               key={row.name}
             >
               <TableCell className='data' component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell className='data' >{row.duedate}</TableCell>
-              <TableCell className='data' >{row.value}</TableCell>
+              <TableCell className='data bg-red' >
+                {normalizeDate(row.due_date)}
+              </TableCell>
+              <TableCell className='data' >
+                {normalizeValue(row.amount)}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

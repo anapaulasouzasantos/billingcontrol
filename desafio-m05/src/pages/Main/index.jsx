@@ -10,6 +10,7 @@ import Sidebar from '../../components/Sidebar';
 import PageContext from '../../context/context.jsx';
 import './styles.css';
 import AddChargeModal from '../../components/AddChargeModal';
+import '../../utils/input.css'
 
 function Main() {
     const [pageContent, setPageContent] = useState('home');

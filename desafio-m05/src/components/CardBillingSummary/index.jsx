@@ -8,7 +8,7 @@ const CardBillingSumary = ({ title, count, bgcolor, color }) => {
         <span className='billing-summary-title'>{title}</span>
         <span style={{ backgroundColor: bgcolor, color: color }} className='billing-summary-count'>{count}</span>
       </div>
-      <TableBillingSummary></TableBillingSummary>
+      <TableBillingSummary title={title}></TableBillingSummary>
       <span className='show-more'>Ver todos</span>
     </div>
   )

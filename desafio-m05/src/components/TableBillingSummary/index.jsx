@@ -1,25 +1,40 @@
-import './TableBillingSummary.css';
-import * as React from 'react';
+import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import * as React from 'react';
+import { useContext, useEffect } from 'react';
+import PageContext from '../../context/context.jsx';
+import normalizeValue from '../../functions/normalizeValue.jsx';
+import './TableBillingSummary.css';
 
-function createData(name, id, value) {
-  return { name, id, value };
-}
+export default function BasicTable({ title }) {
+  const { chargesData } = useContext(PageContext);
 
-const rows = [
-  createData('Sara Silva', 223456787, 'R$ 1000,00'),
-  createData('Carlos Prado', 223456781, 'R$ 400,00'),
-  createData('Lara Brito', 223456781, 'R$ 900,00'),
-  createData('Soraia Neves', 223456787, 'R$ 700,00'),
-];
+  useEffect(() => {
+    handleTableData()
+  })
 
-export default function BasicTable() {
+  function handleTableData() {
+    const payed = chargesData.filter(billing => (billing.status == 'Paga'));
+    const overdue = chargesData.filter(billing => (billing.status == 'Vencida'));
+    const preview = chargesData.filter(billing => (billing.status == 'Pendente'));
+
+    if (title === 'Cobranças Vencidas') {
+      return overdue
+    }
+
+    if (title === 'Cobranças Previstas') {
+      return preview
+    }
+
+    if (title === 'Cobranças Pagas') {
+      return payed
+    }
+  }
   return (
     <TableContainer component={Paper}>
       <Table >
@@ -31,7 +46,7 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {handleTableData().map((row) => (
             <TableRow
               key={row.name}
             >
@@ -39,7 +54,10 @@ export default function BasicTable() {
                 {row.name}
               </TableCell>
               <TableCell className='data-table' >{row.id}</TableCell>
-              <TableCell className='data-table' >{row.value}</TableCell>
+              <TableCell className='data-table' >
+                {normalizeValue(row.amount)}
+                {/* {(`R$ ${(row.amount / 100).toFixed(2).replace('.', ',')}`)} */}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
