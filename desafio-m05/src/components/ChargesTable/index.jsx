@@ -38,12 +38,8 @@ export default function AccessibleTable() {
         <TableContainer component={Paper}>
             <Table>
                 <TableHead>
-                    <TableRow >
+                    <TableRow>
                         <TableCell
-                            sx={{
-                                display: 'flex',
-                                alignItems: 'center'
-                            }}
                             className='subtitle-charges-table'
                             align="center" >
                             <img className='up-down-icon' src={UpDownArrow} />
