@@ -10,7 +10,7 @@ import { useContext, useEffect } from 'react';
 import PageContext from '../../context/context.jsx';
 import normalizeValue from '../../functions/normalizeValue.jsx';
 import './TableBillingSummary.css';
-k
+
 export default function BasicTable({ title }) {
   const { chargesData } = useContext(PageContext);
 
@@ -55,7 +55,7 @@ export default function BasicTable({ title }) {
               </TableCell>
               <TableCell className='data-table' >{row.id}</TableCell>
               <TableCell className='data-table' >
-              {normalizeValue(row.amount)}
+                {normalizeValue(row.amount)}
                 {/* {(`R$ ${(row.amount / 100).toFixed(2).replace('.', ',')}`)} */}
               </TableCell>
             </TableRow>
