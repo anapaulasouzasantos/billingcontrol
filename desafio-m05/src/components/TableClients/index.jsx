@@ -13,14 +13,20 @@ import { useContext, useEffect } from 'react';
 import './styles.css';
 
 export default function BasicTable() {
-  const { clientsData, setPageContent, setHeaderTitle,setTitleClassName } = useContext(PageContext);
+  const {
+    clientsData,
+    setPageContent,
+    setHeaderTitle,
+    setTitleClassName,
+    setClientId } = useContext(PageContext);
 
-  function handleChange() {
+  function handleChange(id) {
     setPageContent('detail');
+    setClientId(id)
     setHeaderTitle('Clientes');
     setTitleClassName('details-title-style');
   }
-
+  
   return (
     <TableContainer component={Paper} sx={{ borderRadius: '30px' }}>
       <Table >
@@ -42,12 +48,12 @@ export default function BasicTable() {
         </TableHead>
         <TableBody>
           {clientsData.map((row) => (
-            <TableRow className='table-cell'>
+            <TableRow id={row.id}>
               <TableCell
                 sx={{
                   color: '#747488', fontFamily: 'Nunito', fontSize: '14px', cursor: 'pointer'
                 }}
-                onClick={() => handleChange()}
+                onClick={() => handleChange(row.id)}
               >{row.name}
               </TableCell>
               <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>{row.cpf}</TableCell>

@@ -13,7 +13,7 @@ import api from '../../../config/api.jsx';
 import normalizeValue from '../../../functions/normalizeValue.jsx';
 
 const ContentHome = () => {
-  const { setChargesData } = useContext(PageContext)
+  const { setChargesData, setClientsData } = useContext(PageContext)
   const [overdueAmount, setOverdueAmount] = useState('');
   const [previewAmount, setPreviewAmount] = useState('');
   const [payedAmount, setPayedAmount] = useState('');
@@ -28,6 +28,7 @@ const ContentHome = () => {
   async function handleApiData() {
 
     const { data: billingsData } = await api.get('/billings');
+    const { data: clientsData } = await api.get('/clients');
 
     const payed = billingsData.filter(billing => (billing.status == 'Paga'));
     const overdue = billingsData.filter(billing => (billing.status == 'Vencida'));
@@ -51,7 +52,8 @@ const ContentHome = () => {
     setOverdueCount(overdue.length);
     setPreviewCount(preview.length);
     setPayedCount(payed.length);
-    setChargesData(billingsData)
+    setChargesData(billingsData);
+    setClientsData(clientsData);
   }
 
   return (

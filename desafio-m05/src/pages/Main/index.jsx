@@ -21,6 +21,7 @@ function Main() {
     const [clientsData, setClientsData] = useState([]);
     const [chargesData, setChargesData] = useState([]);
     const [modalProfile, setModalProfile] = useState(false);
+    const [clientId, setClientId]= useState();
 
     return (
         <PageContext.Provider
@@ -33,7 +34,8 @@ function Main() {
                 headerTitle, setHeaderTitle,
                 titleClassName, setTitleClassName,
                 chargesData, setChargesData,
-                modalProfile, setModalProfile
+                modalProfile, setModalProfile,
+                clientId, setClientId
             }}
         >
             <div className="main-container">
