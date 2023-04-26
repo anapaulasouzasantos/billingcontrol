@@ -8,7 +8,7 @@ import ContentHome from '../../components/Content/ContentHome';
 import Header from '../../components/Header';
 import Sidebar from '../../components/Sidebar';
 import PageContext from '../../context/context.jsx';
-import './styles.css';
+import './main.css';
 
 function Main() {
     const [pageContent, setPageContent] = useState('home');

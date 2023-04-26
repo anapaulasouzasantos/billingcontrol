@@ -1,9 +1,9 @@
-import './styles.css';
-import '../../utils/global.css';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../../config/api';
 import { getItem, setItem } from '../../functions/storage';
-import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import '../../utils/global.css';
+import './signin.css';
 
 function SignIn() {
   const navigate = useNavigate();
@@ -53,26 +53,28 @@ function SignIn() {
         <p className='subtitle' >Gerencie todos os pagamentos da sua empresa em um só lugar.</p>
       </div>
       <div className='right-content'>
-        <form onSubmit={handleSubmit} >
+        <form className='signin-form' onSubmit={handleSubmit} >
           <h1>Faça seu login!</h1>
           <div className='container-input' >
-            <label>
+            <label className='signin-label'>
               E-mail
               <input
                 type='text'
                 placeholder='Digite seu e-mail'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className='signin-input'
               >
               </input>
             </label>
-            <label>
-              Senha < span className='pass-recover' >Esqueceu a senha?</span>
+            <label className='signin-label'>
+              Senha <span className='pass-recover' >Esqueceu a senha?</span>
               <input
                 type='password'
                 placeholder='Digite sua senha'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                className='signin-input'
               >
               </input>
             </label>

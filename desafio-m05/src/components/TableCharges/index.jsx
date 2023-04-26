@@ -1,18 +1,17 @@
-import * as React from 'react';
+import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import UpDownArrow from '../../assets/updown-arrows.svg';
-import AddChargeIcon from '../../assets/add-charge-icon.svg';
-import Edit from '../../assets/edit-profile.svg';
+import * as React from 'react';
+import { useContext } from 'react';
 import Delete from '../../assets/delete-icon.svg';
+import Edit from '../../assets/edit-profile.svg';
+import UpDownArrow from '../../assets/updown-arrows.svg';
 import PageContext from '../../context/context.jsx';
-import { useContext, useEffect } from 'react';
-import './styles.css';
+import './TableCharges.css';
 
 export default function BasicTable() {
   const date = Date.now();
@@ -65,7 +64,7 @@ export default function BasicTable() {
               </TableCell>
               <TableCell
                 sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}
-              >{((row.due_date).slice(0,10))}
+              >{((row.due_date).slice(0, 10))}
               </TableCell>
               <TableCell><span>
                 status

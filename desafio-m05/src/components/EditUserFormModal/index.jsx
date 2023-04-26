@@ -2,16 +2,12 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import TextField from '@mui/material/TextField';
-import CloseIcon from '../../assets/close-icon.svg';
-import './styles.css';
-import api from '../../config/api';
-import { getItem, setItem } from '../../functions/storage';
 import { useContext, useEffect, useState } from 'react';
+import CloseIcon from '../../assets/close-icon.svg';
+import api from '../../config/api';
 import PageContext from '../../context/context';
+import { getItem, setItem } from '../../functions/storage';
+import './EditUserFormModal.css';
 
 export default function EditUserForm() {
     const { setOpen, setModalProfile } = useContext(PageContext);

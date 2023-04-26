@@ -1,12 +1,12 @@
+import DefaulterClientIcon from '../../../assets/defaulter-client-icon.svg';
 import OverdueChargeIcon from '../../../assets/overdue-charge-icon.svg';
 import PayedChargeIcon from '../../../assets/payed-charge-icon.svg';
+import PayerClientIcon from '../../../assets/payer-client-icon.svg';
 import PreviewChargeIcon from '../../../assets/preview-charge-icon.svg';
-import DefaulterClientIcon from '../../../assets/defaulter-client-icon.svg'
-import PayerClientIcon from '../../../assets/payer-client-icon.svg'
 import CardAmount from '../../CardAmount';
 import CardBillingSumary from '../../CardBillingSummary';
 import CardClientSummary from '../../CardClientSummary';
-import './styles.css';
+import './ContentHome.css';
 
 const ContentHome = () => {
   return (

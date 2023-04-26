@@ -1,4 +1,4 @@
-h1 {
+.step-title {
     margin-bottom: 12px;
     text-align: center;
     font-family: 'Montserrat';
@@ -8,6 +8,12 @@ h1 {
     line-height: 130%;
 
     color: #343447;
+}
+
+.form-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .input-label {
