@@ -9,6 +9,7 @@ import Header from '../../components/Header';
 import Sidebar from '../../components/Sidebar';
 import PageContext from '../../context/context.jsx';
 import './styles.css';
+import AddChargeModal from '../../components/AddChargeModal';
 
 function Main() {
     const [pageContent, setPageContent] = useState('home');
@@ -20,6 +21,7 @@ function Main() {
     const [clientsData, setClientsData] = useState([]);
     const [chargesData, setChargesData] = useState([]);
     const [modalProfile, setModalProfile] = useState(false);
+    const [openChargeModal, setOpenChargeModal] = useState(false);
 
     return (
         <PageContext.Provider
@@ -32,12 +34,14 @@ function Main() {
                 headerTitle, setHeaderTitle,
                 titleClassName, setTitleClassName,
                 chargesData, setChargesData,
-                modalProfile, setModalProfile
+                modalProfile, setModalProfile,
+                openChargeModal, setOpenChargeModal
             }}
         >
             <div className="main-container">
                 <EditUserModal />
                 <ClientModal />
+                <AddChargeModal />
                 <Sidebar />
                 <div className='container-content'>
                     <Header />
