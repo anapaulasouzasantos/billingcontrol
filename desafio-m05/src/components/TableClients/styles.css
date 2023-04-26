@@ -1,7 +1,18 @@
-.overdue-client{
+.overdue-client {
     background-color: #FFEFEF;
     font-family: 'Nunito';
     font-size: 14px;
     font-weight: 400;
     color: #971D1D;
+}
+
+.charge-btn {
+    display: flex;
+    flex-direction: column;
+
+    cursor: pointer;
+}
+
+.charge-btn:hover {
+    transform: scale(110%);
 }
