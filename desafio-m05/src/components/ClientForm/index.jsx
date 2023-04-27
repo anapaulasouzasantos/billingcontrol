@@ -6,9 +6,34 @@ import api from '../../config/api';
 import PageContext from '../../context/context';
 import { getItem } from '../../functions/storage.jsx';
 import '../../utils/global.css';
-import './styles.css';
+import './ClientForm.css';
+import { useForm } from 'react-hook-form';
+import InputMask from 'react-input-mask';
 
 export default function AddClientForm() {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = async (data) => {
+        const { cpf } = data;
+
+        const newData = { ...data, cpf: cpf.replace(/[.-]/g, '') }
+
+        try {
+            const formData = Object.fromEntries(Object.entries(newData).filter(([key, value]) => {
+                return value !== ''
+            }));
+
+            const response = await api.post('/clients', formData, {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            });
+
+            setOpenModalClient(false);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const token = getItem('token');
     const { setOpenModalClient, modalClientTitle } = useContext(PageContext)
     const [userForm, setUserForm] = React.useState({
@@ -28,17 +53,17 @@ export default function AddClientForm() {
         setUserForm({ ...userForm, [e.target.name]: e.target.value });
     }
 
-    async function handleSubmit() {
-        const data = Object.fromEntries(Object.entries(userForm).filter(([key, value]) => {
-            return value !== ''
-        }));
-        const response = await api.post('/clients', data, {
-            headers: {
-                authorization: `Bearer ${token}`
-            }
-        });
-        setOpenModalClient(false);
-    }
+    // async function handleSubmit() {
+    //     const data = Object.fromEntries(Object.entries(userForm).filter(([key, value]) => {
+    //         return value !== ''
+    //     }));
+    //     const response = await api.post('/clients', data, {
+    //         headers: {
+    //             authorization: `Bearer ${token}`
+    //         }
+    //     });
+    //     setOpenModalClient(false);
+    // }
 
     return (
         <div className='container-modal'>
@@ -51,106 +76,190 @@ export default function AddClientForm() {
                     src={CloseIcon}
                     onClick={() => setOpenModalClient(false)} />
             </div>
-            <form>
-                <label >Nome*
-                    <input
-                        required
-                        name='name'
-                        placeholder='Digite seu nome'
-                        onChange={(e) => handleOnChangeUserForm(e)}
-                        value={userForm.name}
-                    />
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+            >
+                <label
+                    htmlFor='name-id'
+                >
+                    Nome*
                 </label>
-                <label>E-mail*
-                    <input
-                        name='email'
-                        placeholder='Digite o e-mail'
-                        size='small'
-                        onChange={(e) => handleOnChangeUserForm(e)}
-                        value={userForm.email}
-                    />
+                <input
+                    id='name-id'
+                    name='name'
+                    placeholder='Digite seu nome'
+                    {...register('name', {
+                        required: true
+                    })}
+                    aria-invalid={errors.name ? "true" : "false"}
+                    style={errors.name && { border: "1px solid red" }}
+                />
+                {errors.name?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
+                <label
+                    htmlFor='email-id'
+                >
+                    E-mail*
                 </label>
+                <input
+                    id='email-id'
+                    name='email'
+                    placeholder='Digite o e-mail'
+                    {...register('email', {
+                        required: true
+                    })}
+                    aria-invalid={errors.email ? "true" : "false"}
+                    style={errors.email && { border: "1px solid red" }}
+                />
+                {errors.email?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
                 <div className='group-div flex-row'>
-                    <label>CPF*
-                        <input
+                    <div>
+                        <label
+                            htmlFor='cpf-id'
+                        >
+                            CPF*
+                        </label>
+                        <InputMask
+                            mask='999.999.999-99'
+                            id='cpf-id'
                             name='cpf'
                             placeholder='Digite o CPF'
-                            size='small'
-                            onChange={(e) => handleOnChangeUserForm(e)}
-                            value={userForm.cpf}
+                            {...register('cpf', {
+                                required: true
+                            })}
+                            aria-invalid={errors.cpf ? "true" : "false"}
+                            style={errors.cpf && { border: "1px solid red" }}
                         />
-                    </label>
-                    <label>Telefone*
+                        {errors.cpf?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
+                    </div>
+                    <div>
+                        <label
+                            htmlFor='tel-id'
+                        >
+                            Telefone*
+                        </label>
                         <input
+                            id='tel-id'
                             name='tel'
                             placeholder='Digite o Telefone'
-                            size='small'
-                            onChange={(e) => handleOnChangeUserForm(e)}
-                            value={userForm.tel}
+                            {...register('tel', {
+                                required: true
+                            })}
+                            aria-invalid={errors.tel ? "true" : "false"}
+                            style={errors.tel && { border: "1px solid red" }}
                         />
-                    </label>
+                        {errors.tel?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
+                    </div>
                 </div>
-                <label>Endereço
-                    <input
-                        name='street'
-                        placeholder='Digite o endereço'
-                        onChange={(e) => handleOnChangeUserForm(e)}
-                        value={userForm.street}
-                    />
+                <label
+                    htmlFor='address-id'
+                >
+                    Endereço
                 </label>
-                <label>Complemento
-                    <input
-                        name='street'
-                        placeholder='Digite o endereço'
-                        onChange={(e) => handleOnChangeUserForm(e)}
-                        value={userForm.street}
-                    />
+                <input
+                    id='address-id'
+                    name='street'
+                    placeholder='Digite o endereço'
+                    {...register('street', {
+                        required: true
+                    })}
+                    aria-invalid={errors.street ? "true" : "false"}
+                    style={errors.street && { border: "1px solid red" }}
+                />
+                {errors.street?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
+                <label
+                    htmlFor='address-complement-id'
+                >
+                    Complemento
                 </label>
+                <input
+                    id='address-complement-id'
+                    name='complement'
+                    placeholder='Digite o endereço'
+                    {...register('complement')}
+                />
                 <div className='group-div flex-row'>
-                    <label>CEP
+                    <div>
+                        <label htmlFor='cep-id'>
+                            CEP
+                        </label>
                         <input
+                            id='cep-id'
                             name='cep'
                             placeholder='Digite o CEP'
-                            onChange={(e) => handleOnChangeUserForm(e)}
-                            value={userForm.cep}
+                            {...register('cep', {
+                                required: true
+                            })}
+                            aria-invalid={errors.cep ? "true" : "false"}
+                            style={errors.cep && { border: "1px solid red" }}
                         />
-                    </label>
-                    <label>Bairro
+                        {errors.cep?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
+                    </div>
+                    <div>
+                        <label
+                            htmlFor='neighborhood-id'
+                        >
+                            Bairro
+                        </label>
                         <input
+                            id='neighborhood-id'
                             name='neighborhood'
                             placeholder='Digite o bairro'
-                            onChange={(e) => handleOnChangeUserForm(e)}
-                            value={userForm.neighborhood}
+                            {...register('neighborhood', {
+                                required: true
+                            })}
+                            aria-invalid={errors.neighborhood ? "true" : "false"}
+                            style={errors.neighborhood && { border: "1px solid red" }}
                         />
-                    </label>
+                        {errors.neighborhood?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
+                    </div>
                 </div>
                 <div className='group-div flex-row'>
-                    <label>Cidade
+                    <div>
+                        <label
+                            htmlFor='city-id'
+                        >
+                            Cidade
+                        </label>
                         <input
+                            id='city-id'
                             name='city'
                             placeholder='Digite a cidade'
-                            onChange={(e) => handleOnChangeUserForm(e)}
-                            value={userForm.city}
+                            {...register('city', {
+                                required: true
+                            })}
+                            aria-invalid={errors.city ? "true" : "false"}
+                            style={errors.city && { border: "1px solid red" }}
                         />
-                    </label>
-                    <label>UF
+                        {errors.city?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
+                    </div>
+                    <div>
+                        <label
+                            htmlFor='state-id'
+                        >
+                            UF
+                        </label>
                         <input
+                            id='state-id'
                             name='state'
                             placeholder='Digite a UF'
-                            onChange={(e) => handleOnChangeUserForm(e)}
-                            value={userForm.state}
+                            {...register('state', {
+                                required: true
+                            })}
+                            aria-invalid={errors.state ? "true" : "false"}
+                            style={errors.state && { border: "1px solid red" }}
                         />
-                    </label>
+                        {errors.state?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
+                    </div>
+                </div>
+                <div className='modal-bottom flex-row'>
+                    <button className='button-cancel' onClick={() => setOpenModalClient(false)}>
+                        Cancelar
+                    </button>
+                    <button className='button-aply'>
+                        Aplicar
+                    </button>
                 </div>
             </form>
-            <div className='modal-bottom flex-row'>
-                <button className='button-cancel' onClick={() => setOpenModalClient(false)}>
-                    Cancelar
-                </button>
-                <button className='button-aply' onClick={() => handleSubmit()}>
-                    Aplicar
-                </button>
-            </div>
         </div>
     );
 

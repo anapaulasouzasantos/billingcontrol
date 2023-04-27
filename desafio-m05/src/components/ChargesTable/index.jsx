@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import UpDownArrow from '../../assets/updown-arrows.svg';
 import Edit from '../../assets/edit-profile.svg';
 import Delete from '../../assets/delete-icon.svg';
-import './styles.css';
+import './ChargesTable.css';
 
 function createData(id, dueDate, value, status, description) {
     return { id, dueDate, value, status, description };

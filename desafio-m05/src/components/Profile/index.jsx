@@ -1,10 +1,10 @@
-import './styles.css';
-import Polygon from '../../assets/polygon.svg';
+import { useContext } from 'react';
 import EditProfileIcone from '../../assets/edit-profile.svg';
 import LogoutIcone from '../../assets/logout.svg';
+import Polygon from '../../assets/polygon.svg';
 import PageContext from '../../context/context.jsx';
-import { useContext, useEffect } from 'react';
 import { removeItem } from '../../functions/storage';
+import './Profile.css';
 
 function Profilebox() {
     const { setOpen } = useContext(PageContext);
