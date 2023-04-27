@@ -7,7 +7,7 @@ import Stepper from '@mui/material/Stepper';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import isEmail from 'validator/lib/isEmail';
+import isEmail from 'validator/lib/isEmail';
 import StepIconActive from '../../assets/step-icon-active.svg';
 import StepIconComplete from '../../assets/step-icon-complete.svg';
 import StepIconNext from '../../assets/step-icon-next.svg';
@@ -16,7 +16,7 @@ import StepOneSignup from '../../components/StepOneSignup';
 import StepTwoSignup from '../../components/StepTwoSignup';
 import api from '../../config/api';
 import '../../utils/global.css';
-import './styles.css';
+import './signup.css';
 
 const steps = [
   {
@@ -60,10 +60,10 @@ function SignUp() {
         return
       }
 
-      // if (!isEmail(email)) {
-      //   setErrorMessage(() => 'Informe um email válido!');
-      //   return
-      // }
+      if (!isEmail(email)) {
+        setErrorMessage(() => 'Informe um email válido!');
+        return
+      }
 
       handleNext()
     } catch (error) {

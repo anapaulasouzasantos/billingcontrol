@@ -8,9 +8,9 @@ import PreviewChargeIcon from '../../../assets/preview-charge-icon.svg';
 import CardAmount from '../../CardAmount';
 import CardBillingSumary from '../../CardBillingSummary';
 import CardClientSummary from '../../CardClientSummary';
-import './styles.css';
 import api from '../../../config/api.jsx';
 import normalizeValue from '../../../functions/normalizeValue.jsx';
+import './ContentHome.css';
 
 const ContentHome = () => {
   const { setChargesData, setClientsData } = useContext(PageContext)

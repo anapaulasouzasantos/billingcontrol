@@ -1,7 +1,23 @@
-import './customerDataCard.css';
+import { useContext, useEffect, useState } from 'react';
 import EditClients from '../../assets/edit-clients.svg';
+import api from '../../config/api';
+import PageContext from '../../context/context.jsx';
+import './customerDataCard.css';
 
 const CustomerDataCard = () => {
+    const { clientId, setClientName } = useContext(PageContext);
+    const [tableData, setTableData] = useState([]);
+
+    useEffect(() => {
+        handleTableData()
+    }, [])
+
+    async function handleTableData() {
+        const data = await api.get(`/clients/${clientId}`)
+        setTableData(data.data)
+        setClientName(data.data.name)
+    }
+
     return (
         <div className='content-customer-data-card'>
             <div className='content-customer-data'>
@@ -16,9 +32,9 @@ const CustomerDataCard = () => {
                         <th>CPF</th>
                     </tr>
                     <tr>
-                        <td>sarasilva@gmail.com</td>
-                        <td>71 9 9462 8654</td>
-                        <td>054 365 255 87</td>
+                        <td>{tableData.email}</td>
+                        <td>{tableData.tel}</td>
+                        <td>{tableData.cpf}</td>
                     </tr>
                 </table>
                 <table className='second-table'>
@@ -31,12 +47,12 @@ const CustomerDataCard = () => {
                         <th>UF</th>
                     </tr>
                     <tr>
-                        <td>Rua das Cornélias; nº 512</td>
-                        <td>Oliveiras</td>
-                        <td>Ap: 502</td>
-                        <td>031 654 524 04</td>
-                        <td>Salvador</td>
-                        <td>BA</td>
+                        <td>{tableData.street}</td>
+                        <td>{tableData.neighborhood}</td>
+                        <td>{tableData.complement}</td>
+                        <td>{tableData.cep}</td>
+                        <td>{tableData.city}</td>
+                        <td>{tableData.state}</td>
                     </tr>
                 </table>
             </div>

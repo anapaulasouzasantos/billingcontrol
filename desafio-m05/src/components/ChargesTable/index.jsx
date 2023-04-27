@@ -8,7 +8,6 @@ import TableRow from '@mui/material/TableRow';
 import Delete from '../../assets/delete-icon.svg';
 import Edit from '../../assets/edit-profile.svg';
 import UpDownArrow from '../../assets/updown-arrows.svg';
-import './styles.css';
 import PageContext from '../../context/context.jsx';
 import { useContext, useEffect, useState } from 'react';
 import api from '../../config/api';
@@ -23,15 +22,8 @@ export default function AccessibleTable() {
         handleTableData()
     }, [])
     async function handleTableData() {
-
-        try {
             const data = await api.get(`/billings/${clientId}`)
-            console.log(data.data)
-            setTableData(data.data)
-        } catch (error) {
-
-        }
-
+            setTableData(data.data) 
     }
 
     return (

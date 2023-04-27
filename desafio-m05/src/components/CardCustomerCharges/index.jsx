@@ -1,4 +1,4 @@
-import './styles.css';
+import './CardCustomerCharges.css';
 import ChargesTable from '../ChargesTable';
 
 const CardCustomerCharges = () => {

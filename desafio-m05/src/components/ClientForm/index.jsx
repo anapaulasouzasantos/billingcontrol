@@ -6,7 +6,7 @@ import api from '../../config/api';
 import PageContext from '../../context/context';
 import { getItem } from '../../functions/storage.jsx';
 import '../../utils/global.css';
-import './styles.css';
+import './ClientForm.css';
 
 export default function AddClientForm() {
     const token = getItem('token');
@@ -52,7 +52,7 @@ export default function AddClientForm() {
                     onClick={() => setOpenModalClient(false)} />
             </div>
             <form>
-                <label >Nome*
+                <label>Nome*
                     <input
                         required
                         name='name'

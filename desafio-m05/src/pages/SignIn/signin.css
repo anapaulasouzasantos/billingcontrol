@@ -43,7 +43,7 @@
     background-color: #F8F8F9;
 }
 
-form {
+.signin-form {
     width: 37.76%;
     height: 37.5%;
     display: flex;
@@ -52,7 +52,7 @@ form {
     align-items: center;
 }
 
-form h1 {
+.signin-form h1 {
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 700;
@@ -70,7 +70,7 @@ form h1 {
     gap: 20px;
 }
 
-label {
+.signin-label {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -79,6 +79,13 @@ label {
     gap: 6px;
     width: 344px;
     height: 70px;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #344054;
 }
 
 .pass-recover {
@@ -91,7 +98,7 @@ label {
     color: #DA0175;
 }
 
-form input {
+.signin-input {
     padding: 10px 14px;
     width: 344px;
     height: 44px;

@@ -1,18 +1,18 @@
-import './styles.css';
 import ClientsIcon from '../../../assets/clients-icon.svg';
 import CustomerDataCard from '../../CustomerDataCard';
 import CardCustomerCharges from '../../CardCustomerCharges';
 import PageContext from '../../../context/context.jsx';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import './ContentClientsDetail.css';
 
 const ContentClientsDetail = () => {
-  const { clientId } = useContext(PageContext);
+  const { clientId, clientName } = useContext(PageContext);
 
   return (
     <div className='container-content-clients-detail'>
       <div className='top-info'>
         <img src={ClientsIcon} alt='client icon'></img>
-        <h1>{clientId}</h1>
+        <h1>{clientName}</h1>
       </div>
       <div className='card-client-info'>
         <CustomerDataCard></CustomerDataCard>

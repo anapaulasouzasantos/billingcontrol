@@ -3,6 +3,7 @@ import Modal from '@mui/material/Modal';
 import { useContext } from 'react';
 import PageContext from '../../context/context';
 import ClientForm from '../ClientForm';
+import './ClientModal.css'
 
 const style = {
   display: 'flex',
@@ -17,12 +18,13 @@ const style = {
 };
 
 export default function ClientModal() {
-  const { openModalClient, setOpenModalClient, modalClientTitle} = useContext(PageContext)
+  const { openModalClient, setOpenModalClient, modalClientTitle } = useContext(PageContext)
   const handleClose = () => setOpenModalClient(false);
 
   return (
     <div>
       <Modal
+        className='client-modal-box'
         open={openModalClient}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"

@@ -1,6 +1,6 @@
 import SuccessIcon from '../../assets/success-client-register-icon.svg';
 import CloseIcon from '../../assets/close-icon.svg';
-import './styles.css';
+import './SuccessClientRegister.css';
 
 function SuccessClientRegister() {
     return (
