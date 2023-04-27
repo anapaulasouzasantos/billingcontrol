@@ -20,6 +20,8 @@ export default function BasicTable() {
     setHeaderTitle,
     setTitleClassName,
     setClientId } = useContext(PageContext);
+ 
+  const handleOpen = () => setOpenChargeModal(true);
 
   function handleChange(id) {
     setPageContent('detail');
@@ -67,11 +69,17 @@ export default function BasicTable() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer'
+                justifyContent: 'center'
               }}>
-                <img src={AddChargeIcon} />
-                <span style={{ color: '#DA0175', fontSize: '8px', fontWeight: 'bold' }}>Cobrança</span>
+                <div
+                  className='charge-btn'
+                  onClick={handleOpen}
+                >
+                  <img
+                    src={AddChargeIcon}
+                  />
+                  <span style={{ color: '#DA0175', fontSize: '8px', fontWeight: 'bold' }}>Cobrança</span>
+                </div>
               </TableCell>
             </TableRow>
           ))}

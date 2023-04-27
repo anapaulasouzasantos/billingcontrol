@@ -10,6 +10,8 @@ import Sidebar from '../../components/Sidebar';
 import PageContext from '../../context/context.jsx';
 import './main.css';
 import EditClientModal from '../../components/EditClientModal';
+import AddChargeModal from '../../components/AddChargeModal';
+import '../../utils/input.css'
 
 function Main() {
     const [open, setOpen] = useState(false);
@@ -24,7 +26,8 @@ function Main() {
     const [clientsData, setClientsData] = useState([]);
     const [chargesData, setChargesData] = useState([]);
     const [clientDetail, setClientDetail] = useState([]);
-    
+    const [openChargeModal, setOpenChargeModal] = useState(false);
+
     return (
         <PageContext.Provider
             value={{
@@ -38,13 +41,15 @@ function Main() {
                 chargesData, setChargesData,
                 modalProfile, setModalProfile,
                 clientId, setClientId,
-                clientName, setClientName
+                clientName, setClientName,
+                openChargeModal, setOpenChargeModal
             }}
         >
             <div className="main-container">
                 <EditClientModal />
                 <EditUserModal />
                 <ClientModal />
+                <AddChargeModal />
                 <Sidebar />
                 <div className='container-content'>
                     <Header />

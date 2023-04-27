@@ -8,6 +8,7 @@ import api from '../../config/api';
 import PageContext from '../../context/context';
 import { getItem, setItem } from '../../functions/storage';
 import './EditUserFormModal.css';
+import { useForm } from 'react-hook-form';
 
 export default function EditUserForm() {
     const { setOpen, setModalProfile } = useContext(PageContext);
@@ -22,7 +23,31 @@ export default function EditUserForm() {
         password: '',
         confirmPassword: ''
     });
+
     const [renderForm, setRenderForm] = useState(false)
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const onSubmit = async (data) => {
+        try {
+            const newData = Object.fromEntries(Object.entries(data).filter(([key, value]) => {
+                return value !== '' && key !== 'confirmPassword'
+            }));
+            const response = await api.put('/users', newData, {
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            });
+
+            setItem('email', response.data.email);
+            setItem('name', response.data.name);
+            setRenderForm(false);
+            setOpen(false);
+            setModalProfile(false);
+
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const handleClickConfirmShowPassword = () => setShowConfirmPassword((show) => !show);
@@ -30,10 +55,6 @@ export default function EditUserForm() {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
-
-    const handleOnChangeUserForm = (e) => {
-        setUserForm({ ...userForm, [e.target.name]: e.target.value });
-    }
 
     const handleCloseModal = () => {
         setOpen(false)
@@ -60,96 +81,150 @@ export default function EditUserForm() {
         }
     })
 
-    async function handleSubmit() {
-        const data = Object.fromEntries(Object.entries(userForm).filter(([key, value]) => {
-            return value !== '' && key !== 'confirmPassword'
-        }));
-        const response = await api.put('/users', data, {
-            headers: {
-                authorization: `Bearer ${token}`
-            }
-        });
+    // async function handleSubmit() {
+    //     const data = Object.fromEntries(Object.entries(userForm).filter(([key, value]) => {
+    //         return value !== '' && key !== 'confirmPassword'
+    //     }));
+    //     const response = await api.put('/users', data, {
+    //         headers: {
+    //             authorization: `Bearer ${token}`
+    //         }
+    //     });
 
-        setItem('email', response.data.email);
-        setItem('name', response.data.name);
-        setRenderForm(false);
-        setOpen(false);
-        setModalProfile(false);
-    }
+    //     setItem('email', response.data.email);
+    //     setItem('name', response.data.name);
+    //     setRenderForm(false);
+    //     setOpen(false);
+    //     setModalProfile(false);
+    // }
 
     return (
         <>
             {renderForm && <Box
                 className='main-user-form-div'
                 sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '20px',
-                    padding: '20px'
+                    position: 'relative',
+                    width: '100%',
+                    height: '100%'
                 }}>
-                <button
-                    className='btn-close-modal-edit-user'
-                    onClick={() => handleCloseModal()}
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    className='modal-form edit-user-form'
                 >
-                    <img
-                        src={CloseIcon}
-                        alt='Icon to close modal'
-                    />
-                </button>
-                <h1>Edite seu cadastro</h1>
-                <div className='container-edit-form'>
-                    <div className='user-input-form'>
-                        <span>Nome*</span>
-                        <input
-                            required
-                            name='name'
-                            placeholder='Digite seu nome'
-                            onChange={(e) => handleOnChangeUserForm(e)}
-                            value={userForm.name}
-                        />
+                    <div className='header-charge-modal-form'>
+                        <button
+                            className='close-icon-charge-modal'
+                            onClick={() => handleCloseModal()}
+                        >
+                            <img
+                                src={CloseIcon}
+                                alt='Icon to close modal'
+                            />
+                        </button>
+                        <h1>Edite seu cadastro</h1>
                     </div>
                     <div className='user-input-form'>
-                        <span>E-mail*</span>
+                        <label
+                            htmlFor='name-id'
+                        >
+                            Nome*
+
+                        </label>
                         <input
+                            id='name-id'
+                            name='name'
+                            placeholder='Digite seu nome'
+                            {...register('name', {
+                                value: userForm.name,
+                                required: true
+                            })}
+                            aria-invalid={errors.name ? "true" : "false"}
+                            style={errors.name && { border: "1px solid red" }}
+                        />
+                        {errors.name?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
+                    </div>
+                    <div className='user-input-form'>
+                        <label
+                            htmlFor='email-id'
+                        >
+                            E-mail*
+
+                        </label>
+                        <input
+                            id='email-id'
                             name='email'
                             placeholder='Digite o e-mail'
-                            size='small'
-                            onChange={(e) => handleOnChangeUserForm(e)}
-                            value={userForm.email}
+                            {...register('email', {
+                                value: userForm.email,
+                                required: true
+                            })}
+                            aria-invalid={errors.email ? "true" : "false"}
+                            style={errors.email && { border: "1px solid red" }}
                         />
+                        {errors.email?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
                     </div>
                     <div className='cpf-tel-container-input'>
                         <div className='user-input-form' style={{ marginRight: '4%' }}>
-                            <span>CPF*</span>
+                            <label
+                                htmlFor='cpf-id'
+                            >
+                                CPF*
+
+                            </label>
                             <input
+                                id='cpf-id'
                                 name='cpf'
                                 placeholder='Digite o CPF'
-                                size='small'
-                                onChange={(e) => handleOnChangeUserForm(e)}
-                                value={userForm.cpf}
+                                {...register('cpf', {
+                                    value: userForm.cpf,
+                                    required: true
+                                })}
+                                aria-invalid={errors.cpf ? "true" : "false"}
+                                style={errors.cpf && { border: "1px solid red" }}
                             />
+                            {errors.cpf?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
                         </div>
                         <div className='user-input-form'>
-                            <span>Telefone*</span>
+                            <label
+                                htmlFor='tel-id'
+                            >
+                                Telefone*
+
+                            </label>
                             <input
+                                id='tel-id'
                                 name='tel'
                                 placeholder='Digite o Telefone'
-                                size='small'
-                                onChange={(e) => handleOnChangeUserForm(e)}
-                                value={userForm.tel}
+                                {...register('tel', {
+                                    value: userForm.tel,
+                                    required: true
+                                })}
+                                aria-invalid={errors.tel ? "true" : "false"}
+                                style={errors.tel && { border: "1px solid red" }}
                             />
+                            {errors.tel?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
                         </div>
                     </div>
                     <FormControl sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }} variant="outlined">
                         <div className='user-input-form'>
-                            <span>Nova Senha*</span>
+                            <label
+                                htmlFor='password-id'
+                            >
+                                Nova Senha*
+
+                            </label>
                             <input
-                                required
+                                id='password-id'
                                 name='password'
-                                onChange={(e) => handleOnChangeUserForm(e)}
-                                value={userForm.password}
+                                placeholder='Digite sua senha'
                                 type={showPassword ? 'password' : 'text'}
+                                {...register('password', {
+                                    required: true
+                                })}
+                                aria-invalid={errors.password ? "true" : "false"}
+                                style={errors.password && { border: "1px solid red" }}
                             />
+                            {errors.password?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
                             <button
                                 className='visibility-btn'
                                 onClick={handleClickShowPassword}
@@ -161,14 +236,24 @@ export default function EditUserForm() {
                     </FormControl>
                     <FormControl sx={{ m: 1, width: '100%', margin: '6px 0 0 0' }} variant="outlined">
                         <div className='user-input-form'>
-                            <span>Confirmar Senha*</span>
+                            <label
+                                htmlFor='confirmPassword-id'
+                            >
+                                Confirmar Senha*
+
+                            </label>
                             <input
-                                required
+                                id='confirmPassword-id'
                                 name='confirmPassword'
-                                onChange={(e) => handleOnChangeUserForm(e)}
-                                value={userForm.confirmPassword}
+                                placeholder='Confirme sua senha'
                                 type={showPassword ? 'password' : 'text'}
+                                {...register('confirmPassword', {
+                                    required: true
+                                })}
+                                aria-invalid={errors.confirmPassword ? "true" : "false"}
+                                style={errors.confirmPassword && { border: "1px solid red" }}
                             />
+                            {errors.confirmPassword?.type === 'required' && <p role="alert">Este campo deve ser preenchido</p>}
                             <button
                                 className='visibility-btn'
                                 onClick={handleClickShowPassword}
@@ -178,12 +263,10 @@ export default function EditUserForm() {
                             </button>
                         </div>
                     </FormControl>
-                    <button className='edit-user-form-btn'
-                        onClick={() => handleSubmit()}
-                    >
+                    <button className='edit-user-form-btn'>
                         Aplicar
                     </button>
-                </div>
+                </form>
             </Box>}
         </>
     );
