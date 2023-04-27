@@ -60,7 +60,7 @@ const ContentHome = () => {
     } catch (error) {
       if (error.response.data.mensagem === 'jwt expired') {
         clear();
-        return navigate('/');
+        navigate('/');
       }
       console.log(error.message);
     }
