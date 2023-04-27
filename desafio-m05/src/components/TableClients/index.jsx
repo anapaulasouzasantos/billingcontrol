@@ -11,6 +11,7 @@ import AddChargeIcon from '../../assets/add-charge-icon.svg';
 import UpDownArrow from '../../assets/updown-arrows.svg';
 import PageContext from '../../context/context.jsx';
 import './TableClients.css';
+import normalizeCpf from '../../functions/normalizeCpf';
 
 export default function BasicTable() {
   const {
@@ -56,7 +57,9 @@ export default function BasicTable() {
                 onClick={() => handleChange(row.id)}
               >{row.name}
               </TableCell>
-              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>{row.cpf}</TableCell>
+              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>
+                {normalizeCpf(row.cpf)}
+              </TableCell>
               <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>{row.email}</TableCell>
               <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }} >{row.tel}</TableCell>
               <TableCell><span className='overdue-client'>{row.status}</span></TableCell>

@@ -1,17 +1,16 @@
-import * as React from 'react';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import ClientsIcon from '../../assets/clients-icon.svg';
 import CloseIcon from '../../assets/close-icon.svg';
 import api from '../../config/api';
 import PageContext from '../../context/context';
 import { getItem } from '../../functions/storage.jsx';
 import '../../utils/global.css';
-import './ClientForm.css';
+import './EditClientForm.css';
 
 export default function AddClientForm() {
     const token = getItem('token');
-    const { setOpenModalClient} = useContext(PageContext)
-    const [userForm, setUserForm] = React.useState({
+    const { setOpenModalEditClient, clientId } = useContext(PageContext)
+    const [userForm, setUserForm] = useState({
         name: '',
         email: '',
         cpf: '',
@@ -23,7 +22,7 @@ export default function AddClientForm() {
         city: '',
         state: ''
     });
-
+    
     const handleOnChangeUserForm = (e) => {
         setUserForm({ ...userForm, [e.target.name]: e.target.value });
     }
@@ -32,24 +31,24 @@ export default function AddClientForm() {
         const data = Object.fromEntries(Object.entries(userForm).filter(([key, value]) => {
             return value !== ''
         }));
-        const response = await api.post('/clients', data, {
+        const response = await api.put(`clients/${clientId}`, data, {
             headers: {
                 authorization: `Bearer ${token}`
             }
         });
-        setOpenModalClient(false);
+        setOpenModalEditClient(false);
     }
 
     return (
         <div className='container-modal'>
             <div className='modal-top'>
                 <img src={ClientsIcon} ></img>
-                <h1>Cadastro do Cliente</h1>
+                <h1>Editar Cliente</h1>
                 <img
                     alt='Icon to close modal'
                     className='close-icon'
                     src={CloseIcon}
-                    onClick={() => setOpenModalClient(false)} />
+                    onClick={() => setOpenModalEditClient(false)} />
             </div>
             <form>
                 <label>Nome*
@@ -144,7 +143,7 @@ export default function AddClientForm() {
                 </div>
             </form>
             <div className='modal-bottom flex-row'>
-                <button className='button-cancel' onClick={() => setOpenModalClient(false)}>
+                <button className='button-cancel' onClick={() => setOpenModalEditClient(false)}>
                     Cancelar
                 </button>
                 <button className='button-aply' onClick={() => handleSubmit()}>

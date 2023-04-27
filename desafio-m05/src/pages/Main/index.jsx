@@ -9,28 +9,30 @@ import Header from '../../components/Header';
 import Sidebar from '../../components/Sidebar';
 import PageContext from '../../context/context.jsx';
 import './main.css';
+import EditClientModal from '../../components/EditClientModal';
 
 function Main() {
-    const [pageContent, setPageContent] = useState('home');
     const [open, setOpen] = useState(false);
     const [openModalClient, setOpenModalClient] = useState(false);
-    const [modalClientTitle, setModalClientTitle] = useState('');
+    const [openModalEditClient, setOpenModalEditClient] = useState(false);
+    const [modalProfile, setModalProfile] = useState(false);
+    const [pageContent, setPageContent] = useState('home');
     const [headerTitle, setHeaderTitle] = useState('Resumo das Cobranças');
     const [titleClassName, setTitleClassName] = useState('');
+    const [clientId, setClientId] = useState();
+    const [clientName, setClientName] = useState();
     const [clientsData, setClientsData] = useState([]);
     const [chargesData, setChargesData] = useState([]);
-    const [modalProfile, setModalProfile] = useState(false);
-    const [clientId, setClientId]= useState();
-    const [clientName, setClientName]= useState();
-
+    const [clientDetail, setClientDetail] = useState([]);
+    
     return (
         <PageContext.Provider
             value={{
                 pageContent, setPageContent,
                 open, setOpen,
                 openModalClient, setOpenModalClient,
+                openModalEditClient, setOpenModalEditClient,
                 clientsData, setClientsData,
-                modalClientTitle, setModalClientTitle,
                 headerTitle, setHeaderTitle,
                 titleClassName, setTitleClassName,
                 chargesData, setChargesData,
@@ -40,6 +42,7 @@ function Main() {
             }}
         >
             <div className="main-container">
+                <EditClientModal />
                 <EditUserModal />
                 <ClientModal />
                 <Sidebar />

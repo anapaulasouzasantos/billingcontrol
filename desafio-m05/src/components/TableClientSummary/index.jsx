@@ -8,6 +8,7 @@ import TableRow from '@mui/material/TableRow';
 import { useContext, useEffect } from 'react';
 import PageContext from '../../context/context.jsx';
 import './TableClientSummary.css';
+import normalizeCpf from '../../functions/normalizeCpf.jsx';
 
 export default function BasicTable({ title }) {
   const { clientsData } = useContext(PageContext);
@@ -53,7 +54,7 @@ export default function BasicTable({ title }) {
                 {row.id}
               </TableCell>
               <TableCell className='data' >
-                {row.cpf}
+                {normalizeCpf(row.cpf)}
               </TableCell>
             </TableRow>
           ))}

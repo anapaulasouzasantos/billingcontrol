@@ -5,7 +5,7 @@ import PageContext from '../../context/context.jsx';
 import './customerDataCard.css';
 
 const CustomerDataCard = () => {
-    const { clientId, setClientName } = useContext(PageContext);
+    const { clientId, setClientName, setOpenModalEditClient, setClientDetail } = useContext(PageContext);
     const [tableData, setTableData] = useState([]);
 
     useEffect(() => {
@@ -18,12 +18,21 @@ const CustomerDataCard = () => {
         setClientName(data.data.name)
     }
 
+    function handleEditClientButton() {
+        setOpenModalEditClient(true);
+    }
+
     return (
         <div className='content-customer-data-card'>
             <div className='content-customer-data'>
                 <div className='customer-data-header'>
                     <h3 className='customer-data-title'>Dados do Cliente</h3>
-                    <button className='edit-customer-data-button' ><img src={EditClients} /> Editar Cliente</button>
+                    <button
+                        className='edit-customer-data-button'
+                        onClick={() => handleEditClientButton()}
+                    >
+                        <img src={EditClients} alt='edit client icon' /> Editar Cliente
+                    </button>
                 </div>
                 <table className='first-table'>
                     <tr>
