@@ -5,23 +5,28 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import * as React from 'react';
-import { useContext } from 'react';
 import Delete from '../../assets/delete-icon.svg';
 import Edit from '../../assets/edit-profile.svg';
 import UpDownArrow from '../../assets/updown-arrows.svg';
 import PageContext from '../../context/context.jsx';
-import './TableCharges.css';
+import { useContext, useEffect } from 'react';
 import normalizeValue from '../../functions/normalizeValue.jsx';
 import normalizeDate from '../../functions/normalizeDate.jsx';
+import './TableCharges.css';
 
 export default function BasicTable() {
   const date = Date.now();
+  
+  const { 
+    chargesData, 
+    setPageContent, 
+    setHeaderTitle, 
+    setTitleClassName,
+    setClientId } = useContext(PageContext);
 
-  const { chargesData, setPageContent, setHeaderTitle, setTitleClassName } = useContext(PageContext);
-
-  function handleChange() {
+  function handleChange(id) {
     setPageContent('detail');
+    setClientId(id)
     setHeaderTitle('Clientes');
     setTitleClassName('details-title-style')
   }
@@ -49,8 +54,9 @@ export default function BasicTable() {
         </TableHead>
         <TableBody>
           {chargesData.map((row) => (
-            <TableRow>
-              <TableCell className='charges-table-cell' onClick={() => handleChange()}>
+            <TableRow id={row.id}>
+              <TableCell 
+              className='charges-table-cell' onClick={() => handleChange(row.client_id)}>
                 {row.name}
               </TableCell>
               <TableCell className='charges-table-cell'>
@@ -59,9 +65,14 @@ export default function BasicTable() {
               <TableCell className='charges-table-cell'>
                 {normalizeValue(row.amount)}
               </TableCell>
-              <TableCell
-                sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}
-              >{((row.due_date).slice(0, 10))}
+              <TableCell className='charges-table-cell'>
+                {normalizeDate(row.due_date)}
+              </TableCell>
+              <TableCell className='charges-table-cell'>
+                {row.status}
+              </TableCell>
+              <TableCell className='charges-table-cell'>
+                {row.description}
               </TableCell>
               <TableCell><img src={Edit}></img></TableCell>
               <TableCell><img src={Delete}></img></TableCell>

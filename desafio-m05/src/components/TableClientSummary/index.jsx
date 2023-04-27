@@ -5,23 +5,21 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import * as React from 'react';
 import { useContext, useEffect } from 'react';
 import PageContext from '../../context/context.jsx';
-import normalizeDate from '../../functions/normalizeDate';
-import normalizeValue from '../../functions/normalizeValue';
 import './TableClientSummary.css';
+import normalizeCpf from '../../functions/normalizeCpf.jsx';
 
 export default function BasicTable({ title }) {
-  const { chargesData } = useContext(PageContext);
+  const { clientsData } = useContext(PageContext);
 
   useEffect(() => {
     handleTableData()
   })
 
   function handleTableData() {
-    const UpToDateCustomer = chargesData.filter(billing => (billing.status == 'Paga' || billing.status == 'Pendente'));
-    const defaultingCustomer = chargesData.filter(billing => (billing.status == 'Vencida'));
+    const UpToDateCustomer = clientsData.filter(client => (client.status == 'Em dia'));
+    const defaultingCustomer = clientsData.filter(client => (client.status == 'Inadimplente'));
 
     if (title === 'Clientes Inadimplentes') {
       return defaultingCustomer
@@ -30,6 +28,8 @@ export default function BasicTable({ title }) {
     if (title === 'Clientes em dia') {
       return UpToDateCustomer
     }
+
+    setCount(defaultingCustomer.lenght)
   }
 
   return (
@@ -38,23 +38,23 @@ export default function BasicTable({ title }) {
         <TableHead>
           <TableRow>
             <TableCell className='subtitle-table'>Clientes</TableCell>
-            <TableCell className='subtitle-table' >Data de venc.</TableCell>
-            <TableCell className='subtitle-table' >Valor</TableCell>
+            <TableCell className='subtitle-table' >Id do cliente</TableCell>
+            <TableCell className='subtitle-table' >CPF</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {handleTableData().map((row) => (
             <TableRow
-              key={row.name}
+              key={row.id}
             >
               <TableCell className='data' component="th" scope="row">
                 {row.name}
               </TableCell>
               <TableCell className='data bg-red' >
-                {normalizeDate(row.due_date)}
+                {row.id}
               </TableCell>
               <TableCell className='data' >
-                {normalizeValue(row.amount)}
+                {normalizeCpf(row.cpf)}
               </TableCell>
             </TableRow>
           ))}

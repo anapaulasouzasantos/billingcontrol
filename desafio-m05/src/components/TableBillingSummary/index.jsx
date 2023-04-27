@@ -47,16 +47,13 @@ export default function BasicTable({ title }) {
         </TableHead>
         <TableBody>
           {handleTableData().map((row) => (
-            <TableRow
-              key={row.name}
-            >
+            <TableRow key={row.id}>
               <TableCell className='data-table' component="th" scope="row">
                 {row.name}
               </TableCell>
               <TableCell className='data-table' >{row.id}</TableCell>
               <TableCell className='data-table' >
                 {normalizeValue(row.amount)}
-                {/* {(`R$ ${(row.amount / 100).toFixed(2).replace('.', ',')}`)} */}
               </TableCell>
             </TableRow>
           ))}

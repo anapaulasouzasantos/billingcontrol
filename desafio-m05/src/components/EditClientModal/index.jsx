@@ -2,8 +2,8 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useContext } from 'react';
 import PageContext from '../../context/context';
-import ClientForm from '../ClientForm';
-import './ClientModal.css'
+import EditClientForm from '../EditClientForm';
+import './EditClientModal.css'
 
 const style = {
   display: 'flex',
@@ -17,15 +17,15 @@ const style = {
   p: 2
 };
 
-export default function ClientModal() {
-  const { openModalClient, setOpenModalClient } = useContext(PageContext)
-  const handleClose = () => setOpenModalClient(false);
+export default function EditClientModal() {
+  const { openModalEditClient, setOpenModalEditClient } = useContext(PageContext)
+  const handleClose = () => setOpenModalEditClient(false);
 
   return (
     <div>
       <Modal
         className='client-modal-box'
-        open={openModalClient}
+        open={openModalEditClient}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
@@ -36,7 +36,7 @@ export default function ClientModal() {
         }}
       >
         <Box sx={style} >
-          <ClientForm />
+          <EditClientForm />
         </Box>
       </Modal>
     </div>

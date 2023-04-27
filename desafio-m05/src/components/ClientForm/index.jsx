@@ -35,7 +35,7 @@ export default function AddClientForm() {
     };
 
     const token = getItem('token');
-    const { setOpenModalClient, modalClientTitle } = useContext(PageContext)
+    const { setOpenModalClient} = useContext(PageContext)
     const [userForm, setUserForm] = React.useState({
         name: '',
         email: '',
@@ -69,7 +69,7 @@ export default function AddClientForm() {
         <div className='container-modal'>
             <div className='modal-top'>
                 <img src={ClientsIcon} ></img>
-                <h1>{modalClientTitle}</h1>
+                <h1>Cadastro do Cliente</h1>
                 <img
                     alt='Icon to close modal'
                     className='close-icon'

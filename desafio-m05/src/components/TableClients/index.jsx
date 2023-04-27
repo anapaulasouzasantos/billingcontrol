@@ -11,18 +11,25 @@ import AddChargeIcon from '../../assets/add-charge-icon.svg';
 import UpDownArrow from '../../assets/updown-arrows.svg';
 import PageContext from '../../context/context.jsx';
 import './TableClients.css';
+import normalizeCpf from '../../functions/normalizeCpf';
 
 export default function BasicTable() {
-  const { clientsData, setPageContent, setHeaderTitle, setTitleClassName, setOpenChargeModal } = useContext(PageContext);
-
+  const {
+    clientsData,
+    setPageContent,
+    setHeaderTitle,
+    setTitleClassName,
+    setClientId } = useContext(PageContext);
+ 
   const handleOpen = () => setOpenChargeModal(true);
 
-  function handleChange() {
+  function handleChange(id) {
     setPageContent('detail');
+    setClientId(id)
     setHeaderTitle('Clientes');
     setTitleClassName('details-title-style');
   }
-
+  
   return (
     <TableContainer component={Paper} sx={{ borderRadius: '30px' }}>
       <Table >
@@ -44,15 +51,17 @@ export default function BasicTable() {
         </TableHead>
         <TableBody>
           {clientsData.map((row) => (
-            <TableRow className='table-cell'>
+            <TableRow id={row.id}>
               <TableCell
                 sx={{
                   color: '#747488', fontFamily: 'Nunito', fontSize: '14px', cursor: 'pointer'
                 }}
-                onClick={() => handleChange()}
+                onClick={() => handleChange(row.id)}
               >{row.name}
               </TableCell>
-              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>{row.cpf}</TableCell>
+              <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>
+                {normalizeCpf(row.cpf)}
+              </TableCell>
               <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }}>{row.email}</TableCell>
               <TableCell sx={{ color: '#747488', fontFamily: 'Nunito', fontSize: '14px' }} >{row.tel}</TableCell>
               <TableCell><span className='overdue-client'>{row.status}</span></TableCell>

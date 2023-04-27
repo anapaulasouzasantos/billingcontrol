@@ -9,19 +9,23 @@ import Header from '../../components/Header';
 import Sidebar from '../../components/Sidebar';
 import PageContext from '../../context/context.jsx';
 import './main.css';
+import EditClientModal from '../../components/EditClientModal';
 import AddChargeModal from '../../components/AddChargeModal';
 import '../../utils/input.css'
 
 function Main() {
-    const [pageContent, setPageContent] = useState('home');
     const [open, setOpen] = useState(false);
     const [openModalClient, setOpenModalClient] = useState(false);
-    const [modalClientTitle, setModalClientTitle] = useState('');
+    const [openModalEditClient, setOpenModalEditClient] = useState(false);
+    const [modalProfile, setModalProfile] = useState(false);
+    const [pageContent, setPageContent] = useState('home');
     const [headerTitle, setHeaderTitle] = useState('Resumo das Cobranças');
     const [titleClassName, setTitleClassName] = useState('');
+    const [clientId, setClientId] = useState();
+    const [clientName, setClientName] = useState();
     const [clientsData, setClientsData] = useState([]);
     const [chargesData, setChargesData] = useState([]);
-    const [modalProfile, setModalProfile] = useState(false);
+    const [clientDetail, setClientDetail] = useState([]);
     const [openChargeModal, setOpenChargeModal] = useState(false);
 
     return (
@@ -30,16 +34,19 @@ function Main() {
                 pageContent, setPageContent,
                 open, setOpen,
                 openModalClient, setOpenModalClient,
+                openModalEditClient, setOpenModalEditClient,
                 clientsData, setClientsData,
-                modalClientTitle, setModalClientTitle,
                 headerTitle, setHeaderTitle,
                 titleClassName, setTitleClassName,
                 chargesData, setChargesData,
                 modalProfile, setModalProfile,
+                clientId, setClientId,
+                clientName, setClientName,
                 openChargeModal, setOpenChargeModal
             }}
         >
             <div className="main-container">
+                <EditClientModal />
                 <EditUserModal />
                 <ClientModal />
                 <AddChargeModal />

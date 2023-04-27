@@ -6,7 +6,7 @@ import './styles.css';
 function Teste() {
     return (
         <div>
-           <ClientModal></ClientModal>
+            <ClientModal></ClientModal>
         </div>
     )
 }
