@@ -1,6 +1,5 @@
-import { useState } from "react";
 import SignUpCompleteImage from '../../assets/signup-complete.svg';
-import './styles.css'
+import './SignUpComplete.css';
 
 function SignUpComplete() {
   return (

@@ -1,6 +1,6 @@
-import './styles.css';
 import ClientsIcon from '../../../assets/clients-icon.svg';
 import CardCustomerCharges from '../../CardCustomerCharges';
+import './ContentClientsDetail.css';
 
 const ContentClientsDetail = () => {
   return (

@@ -1,20 +1,42 @@
-.main-user-form-div {
-    position: relative;
-    display: flex;
-    flex-direction: column;
+.header-charge-modal-form>button {
+    all: unset;
+    position: absolute;
+    top: -10px;
+    right: 0;
 
-    width: 100%;
+    cursor: pointer;
 }
 
-.main-user-form-div span {
-    align-self: start;
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 16px;
+    height: 100%;
+}
+
+.modal-form input {
+    width: 100%;
+    height: 44px;
+    outline: none;
+
+    border: 1px solid #D0D5DD;
+    border-radius: 8px;
+
+    padding: 10px 16px;
+
     font-family: 'Nunito';
     font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
 
-    color: #344054;
+    color: #3F3F55;
+}
+
+.edit-user-form label {
+    margin-bottom: 0 !important;
 }
 
 .cpf-tel-container-input {
@@ -27,7 +49,7 @@
     position: absolute;
 
     right: 0px;
-    top: 29px;
+    top: 40px;
 
     width: 32px;
     height: 30px;

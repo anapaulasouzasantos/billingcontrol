@@ -1,10 +1,10 @@
-import './styles.css';
-import LetterAvatars from '../Avatar';
+import { useContext } from 'react';
 import DownArrow from '../../assets/down-arrow.svg';
-import Profilebox from '../Profile';
-import { useState, useContext } from 'react';
-import { getItem } from '../../functions/storage';
 import PageContext from '../../context/context.jsx';
+import { getItem } from '../../functions/storage';
+import LetterAvatars from '../Avatar';
+import Profilebox from '../Profile';
+import './Header.css';
 
 function Header() {
     const name = getItem('name');

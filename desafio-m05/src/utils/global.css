@@ -8,38 +8,71 @@
     box-sizing: border-box;
 }
 
-body {
-    color: blue;
+form p {
+    margin-top: 4px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #E70000;
 }
 
-.flex-row{
+.flex-row {
     display: flex;
+    gap: 24px;
 }
 
-.flex-column{
+.flex-row div {
+    width: 100%;
+}
+
+.flex-column {
     flex-direction: column;
 }
 
-.flex-center{
+.flex-center {
     align-items: center;
     justify-content: center;
 }
 
-.button-aply, .button-cancel{
+.button-aply,
+.button-cancel {
     all: unset;
     font-family: 'Nunito', sans-serif;
     text-align: center;
     border-radius: 8px;
 }
 
-.button-aply{
+.button-aply:hover {
+    transform: scale(110%);
+}
+
+.button-cancel:hover {
+    transform: scale(110%);
+}
+
+.button-aply {
     background-color: #DA0175;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
     color: #F8F8F9;
 }
 
-.button-cancel{
+.button-cancel {
     border: 1px solid #DEDEE9;
     background-color: #F8F8F9;
+
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+
     color: #0E8750;
 }
-

@@ -1,4 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PageContext from '../../../context/context.jsx'
 import DefaulterClientIcon from '../../../assets/defaulter-client-icon.svg';
 import OverdueChargeIcon from '../../../assets/overdue-charge-icon.svg';
@@ -8,11 +9,14 @@ import PreviewChargeIcon from '../../../assets/preview-charge-icon.svg';
 import CardAmount from '../../CardAmount';
 import CardBillingSumary from '../../CardBillingSummary';
 import CardClientSummary from '../../CardClientSummary';
-import './styles.css';
+import './ContentHome.css';
 import api from '../../../config/api.jsx';
 import normalizeValue from '../../../functions/normalizeValue.jsx';
+import { clear } from '../../../functions/storage.jsx';
 
 const ContentHome = () => {
+  const navigate = useNavigate();
+
   const { setChargesData } = useContext(PageContext)
   const [overdueAmount, setOverdueAmount] = useState('');
   const [previewAmount, setPreviewAmount] = useState('');
@@ -23,35 +27,45 @@ const ContentHome = () => {
 
   useEffect(() => {
     handleApiData()
-  },[])
+  }, [])
 
   async function handleApiData() {
+    try {
 
-    const { data: billingsData } = await api.get('/billings');
+      const { data: billingsData } = await api.get('/billings');
 
-    const payed = billingsData.filter(billing => (billing.status == 'Paga'));
-    const overdue = billingsData.filter(billing => (billing.status == 'Vencida'));
-    const preview = billingsData.filter(billing => (billing.status == 'Pendente'));
+      const payed = billingsData.filter(billing => (billing.status == 'Paga'));
+      const overdue = billingsData.filter(billing => (billing.status == 'Vencida'));
+      const preview = billingsData.filter(billing => (billing.status == 'Pendente'));
 
-    const payedData = payed.reduce((result, amount) => {
-      return (result + amount.amount);
-    }, 0);
+      const payedData = payed.reduce((result, amount) => {
+        return (result + amount.amount);
+      }, 0);
 
-    const overdueData = overdue.reduce((result, amount) => {
-      return (result + amount.amount);
-    }, 0);
+      const overdueData = overdue.reduce((result, amount) => {
+        return (result + amount.amount);
+      }, 0);
 
-    const previewData = preview.reduce((result, amount) => {
-      return (result + amount.amount);
-    }, 0);
+      const previewData = preview.reduce((result, amount) => {
+        return (result + amount.amount);
+      }, 0);
 
-    setPayedAmount(payedData);
-    setOverdueAmount(overdueData);
-    setPreviewAmount(previewData);
-    setOverdueCount(overdue.length);
-    setPreviewCount(preview.length);
-    setPayedCount(payed.length);
-    setChargesData(billingsData)
+      setPayedAmount(payedData);
+      setOverdueAmount(overdueData);
+      setPreviewAmount(previewData);
+      setOverdueCount(overdue.length);
+      setPreviewCount(preview.length);
+      setPayedCount(payed.length);
+      setChargesData(billingsData)
+    } catch (error) {
+      if (error.response.data.mensagem === 'jwt expired') {
+        clear();
+        return navigate('/');
+      }
+      console.log(error.message);
+    }
+
+
   }
 
   return (

@@ -8,7 +8,7 @@ import SelectedChargeIcon from '../../assets/selected-charge.svg';
 import SelectedHomeIcon from '../../assets/selected-home.svg';
 import api from '../../config/api.jsx';
 import { getItem } from '../../functions/storage.jsx';
-import './styles.css';
+import './Sidebar.css';
 
 function Sidebar() {
     const token = getItem('token');

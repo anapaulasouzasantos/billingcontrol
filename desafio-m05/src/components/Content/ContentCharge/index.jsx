@@ -1,26 +1,24 @@
-import './styles.css';
-import '../../../utils/global.css';
 import ChargeIcon from '../../../assets/charge-icon.svg';
 import FilterIcon from '../../../assets/filter-icon.svg';
+import '../../../utils/global.css';
+import Search from '../../Search';
 import TableCharges from '../../TableCharges';
+import './ContentCharge.css';
 
-const ContentCharge = () => {
+export default function ContentCharge() {
   return (
-    <div className='container-page-charges-content flex-column'>
-      <div className='top-charge-content flex-row'>
-        <div className='flex-row'>
+    <div className='container-content-charges'>
+      <div className='content-top'>
+        <div className='content-top-left'>
           <img src={ChargeIcon} alt='icon charge'></img>
-          <h1>Cobranças</h1>
+          <span>Cobranças</span>
         </div>
-        <div className='flex-row'>
+        <div className='content-top-right'>
           <img src={FilterIcon}></img>
-          <input placeholder='Pesquisar'></input>
+          <Search />
         </div>
       </div>
       <TableCharges></TableCharges>
     </div>
   )
 }
-
-export default ContentCharge
-
