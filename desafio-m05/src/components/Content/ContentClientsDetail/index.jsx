@@ -1,8 +1,8 @@
+import { useContext } from 'react';
 import ClientsIcon from '../../../assets/clients-icon.svg';
-import CustomerDataCard from '../../CustomerDataCard';
-import CardCustomerCharges from '../../CardCustomerCharges';
 import PageContext from '../../../context/context.jsx';
-import { useContext, useEffect, useState } from 'react';
+import CardCustomerCharges from '../../CardCustomerCharges';
+import CustomerDataCard from '../../CustomerDataCard';
 import './ContentClientsDetail.css';
 
 const ContentClientsDetail = () => {

@@ -9,7 +9,7 @@ import Delete from '../../assets/delete-icon.svg';
 import Edit from '../../assets/edit-profile.svg';
 import UpDownArrow from '../../assets/updown-arrows.svg';
 import PageContext from '../../context/context.jsx';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import normalizeValue from '../../functions/normalizeValue.jsx';
 import normalizeDate from '../../functions/normalizeDate.jsx';
 import './TableCharges.css';

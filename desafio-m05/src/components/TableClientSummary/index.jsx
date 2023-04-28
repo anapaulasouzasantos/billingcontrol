@@ -15,7 +15,7 @@ export default function BasicTable({ title }) {
 
   useEffect(() => {
     handleTableData()
-  })
+  },[])
 
   function handleTableData() {
     const UpToDateCustomer = clientsData.filter(client => (client.status == 'Em dia'));

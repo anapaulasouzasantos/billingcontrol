@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import ClientsIcon from '../../assets/clients-icon.svg';
 import CloseIcon from '../../assets/close-icon.svg';
 import api from '../../config/api';
