@@ -1,6 +1,6 @@
 import EditUserModal from '../../components/EditUserModal';
 import ClientModal from '../../components/ClientModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ContentCharge from '../../components/Content/ContentCharge'
 import ContentClients from '../../components/Content/ContentClients';
 import ContentClientsDetail from '../../components/Content/ContentClientsDetail';
@@ -27,6 +27,7 @@ function Main() {
     const [clientsData, setClientsData] = useState([]);
     const [chargesData, setChargesData] = useState([]);
     const [clientDetail, setClientDetail] = useState([]);
+    const [tableData, setTableData] = useState([]);
     const [openChargeModal, setOpenChargeModal] = useState(false);
 
     return (
@@ -44,6 +45,7 @@ function Main() {
                 modalProfile, setModalProfile,
                 clientId, setClientId,
                 clientName, setClientName,
+                tableData, setTableData,
                 openChargeModal, setOpenChargeModal
             }}
         >

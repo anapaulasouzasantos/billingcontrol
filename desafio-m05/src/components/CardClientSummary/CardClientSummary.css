@@ -1,8 +1,8 @@
 .container-client-summary {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    align-items: flex-start;
+
     width: 48.6%;
     height: 397px;
     border-radius: 30px;
@@ -31,7 +31,6 @@
 
 .client-summary-title {
     margin-left: 8px;
-
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 600;
@@ -61,4 +60,12 @@
     text-decoration: underline;
     cursor: pointer;
     color: #DA0175;
+}
+
+.teste11{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }

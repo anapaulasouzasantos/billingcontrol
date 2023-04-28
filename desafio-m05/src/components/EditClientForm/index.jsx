@@ -9,7 +9,7 @@ import './EditClientForm.css';
 
 export default function AddClientForm() {
     const token = getItem('token');
-    const { setOpenModalEditClient, clientId } = useContext(PageContext)
+    const { setOpenModalEditClient, clientId } = useContext(PageContext);
     const [userForm, setUserForm] = useState({
         name: '',
         email: '',
@@ -22,7 +22,7 @@ export default function AddClientForm() {
         city: '',
         state: ''
     });
-    
+
     const handleOnChangeUserForm = (e) => {
         setUserForm({ ...userForm, [e.target.name]: e.target.value });
     }
@@ -99,10 +99,10 @@ export default function AddClientForm() {
                 </label>
                 <label>Complemento
                     <input
-                        name='street'
+                        name='complement'
                         placeholder='Digite o endereço'
                         onChange={(e) => handleOnChangeUserForm(e)}
-                        value={userForm.street}
+                        value={userForm.complement}
                     />
                 </label>
                 <div className='group-div flex-row'>

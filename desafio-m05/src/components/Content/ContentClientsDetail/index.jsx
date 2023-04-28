@@ -6,8 +6,8 @@ import { useContext, useEffect, useState } from 'react';
 import './ContentClientsDetail.css';
 
 const ContentClientsDetail = () => {
-  const { clientId, clientName } = useContext(PageContext);
-
+  const { clientName } = useContext(PageContext);
+  
   return (
     <div className='container-content-clients-detail'>
       <div className='top-info'>

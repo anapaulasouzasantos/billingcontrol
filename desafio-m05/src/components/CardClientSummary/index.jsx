@@ -11,8 +11,10 @@ const CardClientSummary = ({ title, icon, count, bgcolor, color, setCount }) => 
         </div>
         <span style={{ backgroundColor: bgcolor, color: color }} className='client-summary-count'>{count}</span>
       </div>
-      <TableClientSummary title={title} setCount={setCount}></TableClientSummary>
-      <span className='show-more'>Ver todos</span>
+      <div className='teste11'>
+        <TableClientSummary title={title} setCount={setCount}></TableClientSummary>
+        <span className='show-more'>Ver todos</span>
+      </div>
     </div>
   )
 }

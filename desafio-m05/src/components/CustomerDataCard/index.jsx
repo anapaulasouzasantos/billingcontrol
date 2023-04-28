@@ -3,22 +3,29 @@ import EditClients from '../../assets/edit-clients.svg';
 import api from '../../config/api';
 import PageContext from '../../context/context.jsx';
 import './customerDataCard.css';
-import {getItem} from '../../functions/storage';
+import { getItem } from '../../functions/storage';
 
 
 const CustomerDataCard = () => {
     const token = getItem('token')
-    const { clientId, setClientName, setOpenModalEditClient, setClientDetail } = useContext(PageContext);
-    const [tableData, setTableData] = useState([]);
+    const {
+        clientId,
+        setClientName,
+        setOpenModalEditClient,
+        openModalEditClient,
+        tableData,
+        setTableData } = useContext(PageContext);
 
     useEffect(() => {
         handleTableData()
-    }, [])
+    }, [openModalEditClient])
 
     async function handleTableData() {
-        const data = await api.get(`/clients/${clientId}`,{headers:{
-            authorization: `Bearer ${token}`,  
-        }})
+        const data = await api.get(`/clients/${clientId}`, {
+            headers: {
+                authorization: `Bearer ${token}`,
+            }
+        })
         setTableData(data.data)
         setClientName(data.data.name)
     }
