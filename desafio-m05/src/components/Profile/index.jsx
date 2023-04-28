@@ -1,19 +1,19 @@
 import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import EditProfileIcone from '../../assets/edit-profile.svg';
 import LogoutIcone from '../../assets/logout.svg';
 import Polygon from '../../assets/polygon.svg';
 import PageContext from '../../context/context.jsx';
-import { removeItem } from '../../functions/storage';
+import { clear } from '../../functions/storage';
 import './Profile.css';
 
 function Profilebox() {
+    const navigate = useNavigate();
     const { setOpen } = useContext(PageContext);
 
     const logoutUser = () => {
-        removeItem('token');
-        removeItem('name');
-        removeItem('email');
-        window.location.reload(true);
+        clear();
+        navigate('/');
     }
 
     return (
