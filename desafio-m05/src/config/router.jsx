@@ -3,7 +3,6 @@ import SignIn from '../pages/SignIn';
 import Teste from '../pages/Teste';
 import Main from '../pages/Main';
 import SignUp from '../pages/SignUp';
-
 import { getItem } from '../functions/storage';
 
 function Router() {

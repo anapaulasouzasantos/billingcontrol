@@ -20,7 +20,7 @@ export default function BasicTable({ title }) {
   function handleTableData() {
     const UpToDateCustomer = clientsData.filter(client => (client.status == 'Em dia'));
     const defaultingCustomer = clientsData.filter(client => (client.status == 'Inadimplente'));
-
+   
     if (title === 'Clientes Inadimplentes') {
       return defaultingCustomer
     }
@@ -28,8 +28,6 @@ export default function BasicTable({ title }) {
     if (title === 'Clientes em dia') {
       return UpToDateCustomer
     }
-
-    setCount(defaultingCustomer.lenght)
   }
 
   return (
@@ -43,20 +41,23 @@ export default function BasicTable({ title }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {handleTableData().map((row) => (
-            <TableRow
-              key={row.id}
-            >
-              <TableCell className='data' component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell className='data bg-red' >
-                {row.id}
-              </TableCell>
-              <TableCell className='data' >
-                {normalizeCpf(row.cpf)}
-              </TableCell>
-            </TableRow>
+          {handleTableData().map((row, index) => (
+            <>
+            {index <= 3 ?
+              <TableRow
+                key={row.id}
+              >
+                <TableCell className='data' component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell className='data bg-red' >
+                  {row.id}
+                </TableCell>
+                <TableCell className='data' >
+                  {normalizeCpf(row.cpf)}
+                </TableCell>
+              </TableRow>: null}
+            </>
           ))}
         </TableBody>
       </Table>

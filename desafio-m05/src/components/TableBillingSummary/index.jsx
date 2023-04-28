@@ -6,33 +6,41 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import * as React from 'react';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import PageContext from '../../context/context.jsx';
 import normalizeValue from '../../functions/normalizeValue.jsx';
 import './TableBillingSummary.css';
+import api from '../../config/api.jsx'
 
 export default function BasicTable({ title }) {
   const { chargesData } = useContext(PageContext);
+  const [overdueData, setOverdueData] = useState([]);
+  const [paidData, setPaidData] = useState([]);
+  const [previewData, setPreviewData] = useState([]);
 
   useEffect(() => {
     handleTableData()
-  })
+    handleApi()
+  },[])
+
+  async function handleApi(){
+    const response = await api.get('billings');
+    setOverdueData(response.data.overdue);
+    setPaidData(response.data.paid);
+    setPreviewData(response.data.pending);
+  }
 
   function handleTableData() {
-    const payed = chargesData.filter(billing => (billing.status == 'Paga'));
-    const overdue = chargesData.filter(billing => (billing.status == 'Vencida'));
-    const preview = chargesData.filter(billing => (billing.status == 'Pendente'));
-
     if (title === 'Cobranças Vencidas') {
-      return overdue
+      return overdueData
     }
 
     if (title === 'Cobranças Previstas') {
-      return preview
+      return previewData
     }
 
     if (title === 'Cobranças Pagas') {
-      return payed
+      return paidData
     }
   }
   return (
@@ -46,16 +54,19 @@ export default function BasicTable({ title }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {handleTableData().map((row) => (
-            <TableRow key={row.id}>
-              <TableCell className='data-table' component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell className='data-table' >{row.id}</TableCell>
-              <TableCell className='data-table' >
-                {normalizeValue(row.amount)}
-              </TableCell>
-            </TableRow>
+          {handleTableData().map((row, index) => (
+            <>
+            {index <=3 ? 
+              <TableRow key={row.id}>
+                <TableCell className='data-table' component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell className='data-table' >{row.id}</TableCell>
+                <TableCell className='data-table' >
+                  {normalizeValue(row.amount)}
+                </TableCell>
+              </TableRow>:null}
+            </>
           ))}
         </TableBody>
       </Table>

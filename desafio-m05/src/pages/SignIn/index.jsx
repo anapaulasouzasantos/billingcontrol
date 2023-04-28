@@ -40,7 +40,7 @@ function SignIn() {
 
   useEffect(() => {
     const token = getItem('token');
-
+    
     if (token) {
       navigate('/main');
     }

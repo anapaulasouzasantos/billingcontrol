@@ -62,13 +62,13 @@ function Sidebar() {
     }
 
     async function chargesTableData() {
-        const response = await api.get('/billings', {
+        const {data: billingsData} = await api.get('/billings', {
             headers: {
                 authorization: `Bearer ${token}`
             }
         });
-        console.log(response)
-        setChargesData(response.data);
+       
+        setChargesData(billingsData.billings);
     }
 
     return (

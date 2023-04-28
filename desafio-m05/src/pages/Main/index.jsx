@@ -21,6 +21,7 @@ function Main() {
     const [pageContent, setPageContent] = useState('home');
     const [headerTitle, setHeaderTitle] = useState('Resumo das Cobranças');
     const [titleClassName, setTitleClassName] = useState('');
+    const [count, setCount] = useState('');
     const [clientId, setClientId] = useState();
     const [clientName, setClientName] = useState();
     const [clientsData, setClientsData] = useState([]);
@@ -38,6 +39,7 @@ function Main() {
                 clientsData, setClientsData,
                 headerTitle, setHeaderTitle,
                 titleClassName, setTitleClassName,
+                count, setCount,
                 chargesData, setChargesData,
                 modalProfile, setModalProfile,
                 clientId, setClientId,

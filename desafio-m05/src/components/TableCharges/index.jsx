@@ -15,15 +15,13 @@ import normalizeDate from '../../functions/normalizeDate.jsx';
 import './TableCharges.css';
 
 export default function BasicTable() {
-  const date = Date.now();
-  
   const { 
     chargesData, 
     setPageContent, 
     setHeaderTitle, 
     setTitleClassName,
     setClientId } = useContext(PageContext);
-
+   
   function handleChange(id) {
     setPageContent('detail');
     setClientId(id)
@@ -53,7 +51,7 @@ export default function BasicTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {chargesData.map((row) => (
+          {chargesData?.map((row) => (
             <TableRow id={row.id}>
               <TableCell 
               className='charges-table-cell' onClick={() => handleChange(row.client_id)}>
