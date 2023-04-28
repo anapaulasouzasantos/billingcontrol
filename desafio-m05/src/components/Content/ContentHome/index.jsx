@@ -27,7 +27,7 @@ const ContentHome = () => {
 
   useEffect(() => {
     handleApiData();
-  })
+  },[]);
 
   async function handleApiData() {
     try {
